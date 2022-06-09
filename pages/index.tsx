@@ -5,15 +5,14 @@ import {RiSunFill , RiMoonFill} from 'react-icons/ri'
 import {motion} from 'framer-motion'
 import { useEffect, useState } from 'react'
 
-
+import Split from '../tools/Split'
 
 
 const Home: NextPage = () => {
 
-  const [dark,setDark] = useState(false)
+  const [dark,setDark] = useState(true)
    
-  useEffect(()=>{
-  
+  useEffect(()=>{ 
     if(dark){
       document.documentElement.classList.add('dark')
     } else{
@@ -21,6 +20,7 @@ const Home: NextPage = () => {
     }
       
   },[dark])
+
 
   return (
     <main 
@@ -69,9 +69,10 @@ const Home: NextPage = () => {
 
 
       <h1 
-        className=' 
-        font-manrope -tracking-wider'>
-        anish kanna
+        className='
+        overflow-hidden
+        font-space -tracking-wider'>
+        <Split text='anish kanna'/>
       </h1>
 
     </main>
