@@ -8,7 +8,16 @@
   src: url('../font/IBM.otf')
 }
 
+@font-face{
+  font-family: 'Accuratist';
+  src: url('../font/Accuratist.ttf')
+}
 
+
+@font-face{
+  font-family: 'ZIZO';
+  src: url('../font/Zizo.ttf')
+}
 
 @font-face{
   font-family: 'MANROPE';
@@ -22,7 +31,7 @@
 
 html,
 body {
-
+  scroll-behavior: smooth;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -35,13 +44,16 @@ a {
 }
 
 * {
- 
+  -webkit-font-smoothing: subpixel-antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  -webkit-text-rendering: optimizeLegibility; 
+  text-rendering: optimizeLegibility; 
   padding:0;
   margin:0;
   box-sizing: border-box;
 }
 
-
+html.touch * { text-rendering: optimizeSpeed; }
 
 h1{
   font-size: clamp(2rem,1rem + 15vmin, 15rem);
@@ -53,9 +65,7 @@ h1{
   transform-style:preserve-3d;
 }
 
-.page>*{
-  @apply filter drop-shadow-[0_0px_3px_black];
-}
+
 
 .front{
   transform: translate3d(0,0,.8rem);

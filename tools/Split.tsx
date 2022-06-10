@@ -33,15 +33,15 @@ const Split: FC<Props> = ({
 
 
   const child:Variants = {
-    visible: {
+    visible: { 
       opacity:1,y:0,
       transition:{
         type:'spring',
          damping: 20
       }
     },
-      hidden:{
-      opacity:1,y:'100%',
+      hidden:{ 
+      opacity:1,y:'100%'
     }
   }
 
@@ -50,16 +50,22 @@ const Split: FC<Props> = ({
       variants={container}
       initial='hidden'
       animate='visible'
-     className='flex'
+      style={{
+          display:'flex',
+          overflow:'hidden', 
+      }}
     {...props}
      >
 
     {letters.map((letter,index)=>(
           <motion.span
+              style={{
+              willChange:'transform', 
+          }} 
               key={index}
               variants={child}
             >
-      {letter === " " ? "\u00A0" : letter}
+         {letter === " " ? "\u00A0" : letter}
         </motion.span>
     ))}
 
