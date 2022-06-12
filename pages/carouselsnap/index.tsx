@@ -25,7 +25,7 @@ const Carouselsnap: FC = () => {
           entry.target.classList.toggle("show", entry.isIntersecting);
         });
       },
-      { root: wrapper, threshold: 0.5, rootMargin: "-5%" }
+      { root: wrapper, threshold: 1, rootMargin: "-5%" }
     );
     cards.forEach((card) => {
       observer.observe(card);
