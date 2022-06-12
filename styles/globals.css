@@ -75,3 +75,22 @@ h1{
   transform: rotateY(180deg) translate3d(0,0,.8rem);
 }
 
+.carousel{ 
+  scrollbar-width:none;
+  transform-style:preserve-3d;
+}
+
+
+.carousel::-webkit-scrollbar{
+  display:none;
+}
+
+.card{
+  @apply filter blur-[2px] grayscale ;
+  transform:perspective(200rem)  translate3d(0,0rem,-100rem);
+}
+
+.show{
+  @apply filter-none grayscale-0 ;
+  transform:perspective(200rem) translate3d(0,0,0rem);
+}
