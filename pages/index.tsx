@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Split from "../tools/Split";
 
 import { useScroll, useGesture } from "@use-gesture/react";
-import Carousel from "../components/Carousel";
 
 const Home: NextPage = () => {
   const [name, setName] = useState(true);
