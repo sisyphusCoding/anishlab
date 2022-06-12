@@ -61,6 +61,8 @@ const Carouselsnap: FC = () => {
             }}
             key={index}
             className={`
+  rounded-xl
+  overflow-hidden
     snap-center       
     snap-always
      md:min-w-[70vmin]   
@@ -75,12 +77,11 @@ const Carouselsnap: FC = () => {
             <Image
               className=" 
     duration-700
-        
     transition-all ease-in-Expo
-      rounded-md card"
+      rounded-xl card"
               src={pet}
               layout="responsive"
-              height={65}
+              height={70}
               objectFit="cover"
               width={100}
               alt="cat"

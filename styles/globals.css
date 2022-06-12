@@ -44,6 +44,7 @@ a {
 }
 
 * {
+  image-rendering: high-quality;
   -webkit-font-smoothing: subpixel-antialiased;
 	-moz-osx-font-smoothing: grayscale;
   -webkit-text-rendering: optimizeLegibility; 
@@ -86,11 +87,11 @@ h1{
 }
 
 .card{
-  @apply filter blur-[2px] grayscale ;
-  transform:perspective(200rem) translate3d(0,0rem,-100rem);
+  @apply filter blur-[.5vmin] grayscale ;
+  transform:perspective(200rem) translate3d(0,0rem,-100rem) ;
 }
 
 .show{
   @apply filter-none grayscale-0 ;
-  transform:perspective(200rem) translate3d(0,0,0rem);
+  transform:perspective(200rem) translate3d(0,0,5rem) ;
 }
