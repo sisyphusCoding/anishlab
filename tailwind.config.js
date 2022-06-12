@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       transitionTimingFunction :{
-        'in-Expo' : 'cubic-bezier(0.16, 1, 0.3, 1)'
+        'in-Expo' : ' cubic-bezier(0.5, 1, 0.89, 1)'
       },
       fontFamily: {
         accuratist:['Accuratist', 'sans-serif'],

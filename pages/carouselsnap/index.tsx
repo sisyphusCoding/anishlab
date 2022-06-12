@@ -25,7 +25,7 @@ const Carouselsnap: FC = () => {
           entry.target.classList.toggle("show", entry.isIntersecting);
         });
       },
-      { root: wrapper, threshold: 1, rootMargin: "-5%" }
+      { root: wrapper, threshold: 0.5, rootMargin: "-20%" }
     );
     cards.forEach((card) => {
       observer.observe(card);
@@ -41,6 +41,7 @@ const Carouselsnap: FC = () => {
       <section
         className="         
       carousel  
+      px-10  
       scroll-smooth    
       drop-shadow-[0_3px_50px_rgba(0,0,0,.7)]     
       dark:drop-shadow-[0_3px_10px_#171717]       
@@ -60,7 +61,8 @@ const Carouselsnap: FC = () => {
             }}
             key={index}
             className={`
-    snap-center        
+    snap-center       
+    snap-always
      md:min-w-[70vmin]   
      md:max-w-[70vmin]       
      max-w-[90vmin]       
@@ -72,12 +74,13 @@ const Carouselsnap: FC = () => {
           >
             <Image
               className=" 
-    duration-700        
-    transition-all ease-out
+    duration-700
+        
+    transition-all ease-in-Expo
       rounded-md card"
               src={pet}
               layout="responsive"
-              height={70}
+              height={65}
               objectFit="cover"
               width={100}
               alt="cat"
