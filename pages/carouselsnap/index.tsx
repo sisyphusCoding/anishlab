@@ -19,6 +19,12 @@ const Carouselsnap: FC = () => {
     const cards = document.querySelectorAll(".card");
     const wrapper = document.querySelector(".carousel");
 
+    wrapper?.scrollIntoView({
+      behavior: "smooth",
+      inline: "nearest",
+      block: "end",
+    });
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -47,7 +53,9 @@ const Carouselsnap: FC = () => {
       dark:drop-shadow-[0_3px_10px_#171717]       
       rounded-2xl
       snap-mandatory snap-x 
+      scroll-mx-10 
       overflow-y-hidden
+      overflow-x-auto  
       gap-0 
       flex items-center justify-start
       max-w-[100vw]
@@ -63,8 +71,9 @@ const Carouselsnap: FC = () => {
             className={`
   rounded-xl
   overflow-hidden
-    snap-center       
-  
+    will-change-transform
+    snap-center 
+    snap-always 
      md:min-w-[70vmin]   
      md:max-w-[70vmin]       
      max-w-[90vmin]       

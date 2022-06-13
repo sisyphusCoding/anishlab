@@ -96,11 +96,11 @@ h3{
 }
 
 .card{
-  @apply filter blur-[.5vmin] grayscale opacity-80;
-  transform:perspective(200rem) translate3d(0,0rem,-100rem) ;
+  @apply filter blur-[.3vmin] grayscale opacity-80;
+  transform:perspective(200rem) translate3d(0,0,-150rem) ;
 }
 
 .show{
   @apply filter-none grayscale-0 opacity-100 ;
-  transform:perspective(200rem) translate3d(0,0,5rem) ;
+  transform:perspective(200rem) translate3d(0,0,0) ;
 }

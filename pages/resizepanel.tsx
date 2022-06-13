@@ -25,9 +25,11 @@ const Resize: FC = () => {
         <button
           onClick={() => setExpand(!expand)}
           className="
+        outline-none  
         self-start
         transition-all ease duration-300
-        hover:grayscale filter
+        hover:grayscale filter 
+        focus:grayscale 
         rounded-lg 
         shadow-xl
         cursor-pointer px-6 py-2 bg-cyan-500 dark:bg-cyan-900 w-fit"
@@ -77,9 +79,9 @@ const ResizePanel = ({ children, id }: Props) => {
       <AnimatePresence initial={false}>
         <motion.div
           key={id}
-          initial={{ opacity: 0, x: "0%" }}
+          initial={{ opacity: 0, x: "50%" }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: "0%", transition: { duration: duration / 2 } }}
+          exit={{ opacity: 0, x: "-50%", transition: { duration: duration / 2 } }}
         >
           <div ref={ref} className={`${height ? "absolute" : "relative"}`}>
             {children}
@@ -91,5 +93,5 @@ const ResizePanel = ({ children, id }: Props) => {
 };
 
 let desciption =
-  "He was arguably guilty of the crimes with which he was charged, impiety and corrupting the youth, because he did reject the city’s gods and he did inspire disrespect for authority among his youthful followers (though that was not his intention). He was accordingly ";
+  "He was arguably guilty of the crimes with which he was charged, impiety and corrupting the youth, because he did reject the city’s gods and he did inspire disrespect for authority among his youthful followers (though that was not his intention).He was accordingly convicted and sentenced to death by poison. ";
 export default Resize;
