@@ -60,6 +60,15 @@ h1{
   font-size: clamp(2rem,1rem + 15vmin, 15rem);
 }
 
+
+
+p{
+  font-size: clamp(.4rem,.4rem + 1.5vmin, 1.5rem);
+}
+h3{
+  font-size: clamp(1.4rem,.8rem + 8vmin, 8rem);
+}
+
 .page{
   aspect-ratio:1;
   perspective:180rem;
@@ -87,11 +96,11 @@ h1{
 }
 
 .card{
-  @apply filter blur-[.5vmin] grayscale ;
+  @apply filter blur-[.5vmin] grayscale opacity-80;
   transform:perspective(200rem) translate3d(0,0rem,-100rem) ;
 }
 
 .show{
-  @apply filter-none grayscale-0 ;
+  @apply filter-none grayscale-0 opacity-100 ;
   transform:perspective(200rem) translate3d(0,0,5rem) ;
 }

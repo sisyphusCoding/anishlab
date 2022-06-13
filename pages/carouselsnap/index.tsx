@@ -25,12 +25,28 @@ const Carouselsnap: FC = () => {
           entry.target.classList.toggle("show", entry.isIntersecting);
         });
       },
-      { root: wrapper, threshold: 0.5, rootMargin: "-20%" }
+      {threshold:.5,rootMargin:'-15%',root:wrapper}
     );
     cards.forEach((card) => {
       observer.observe(card);
     });
+  
+
+
+
+  const lastCard = new IntersectionObserver(entries => {
+    const lastCard=entries[0]
+    if(!lastCard.isIntersecting) return
+    loadNew()
+  })
+
+
+    const thisLast = document.querySelector('.card:last-child')
+
+    lastCard.observe(thisLast)
+
   }
+    
 
   return (
     <div
@@ -64,7 +80,7 @@ const Carouselsnap: FC = () => {
   rounded-xl
   overflow-hidden
     snap-center       
-    snap-always
+  
      md:min-w-[70vmin]   
      md:max-w-[70vmin]       
      max-w-[90vmin]       
