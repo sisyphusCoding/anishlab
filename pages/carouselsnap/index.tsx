@@ -25,28 +25,12 @@ const Carouselsnap: FC = () => {
           entry.target.classList.toggle("show", entry.isIntersecting);
         });
       },
-      {threshold:.5,rootMargin:'-15%',root:wrapper}
+      { threshold: 0.5, rootMargin: "-15%", root: wrapper }
     );
     cards.forEach((card) => {
       observer.observe(card);
     });
-  
-
-
-
-  const lastCard = new IntersectionObserver(entries => {
-    const lastCard=entries[0]
-    if(!lastCard.isIntersecting) return
-    loadNew()
-  })
-
-
-    const thisLast = document.querySelector('.card:last-child')
-
-    lastCard.observe(thisLast)
-
   }
-    
 
   return (
     <div
