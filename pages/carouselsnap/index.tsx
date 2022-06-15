@@ -2,13 +2,13 @@ import React, { FC, useEffect, useRef } from "react";
 
 import Image from "next/image";
 
-import cat0 from "./cat/cat0.jpeg";
-import cat1 from "./cat/cat1.jpeg";
-import cat2 from "./cat/cat2.jpeg";
-import cat3 from "./cat/cat3.jpeg";
-import cat4 from "./cat/cat4.jpeg";
-import cat5 from "./cat/cat5.jpeg";
-import cat6 from "./cat/cat6.jpeg";
+import cat0 from "/cat/cat0.jpeg";
+import cat1 from "/cat/cat1.jpeg";
+import cat2 from "/cat/cat2.jpeg";
+import cat3 from "/cat/cat3.jpeg";
+import cat4 from "/cat/cat4.jpeg";
+import cat5 from "/cat/cat5.jpeg";
+import cat6 from "/cat/cat6.jpeg";
 
 import { useIntersection } from "react-use";
 
