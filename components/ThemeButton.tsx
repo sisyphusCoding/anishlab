@@ -1,27 +1,26 @@
-
 import { RiSunFill, RiMoonFill } from "react-icons/ri";
 
 import { motion } from "framer-motion";
-import { useEffect, useState , FC } from "react";
+import { useEffect, useState, FC } from "react";
 
-const ThemeButton: FC = ({}) => {
+const ThemeButton: FC = () => {
+  const [dark, setDark] = useState<boolean>(false);
 
-  
-  const [dark , setDark] = useState<boolean>(false)
-
-  useEffect(()=>{
-    {dark? 
-    document.documentElement.classList.add("dark")
-    : document.documentElement.classList.remove("dark") }
-      
-  },[dark])
-
+  useEffect(() => {
+    {
+      dark
+        ? document.documentElement.classList.add("dark")
+        : document.documentElement.classList.remove("dark");
+    }
+  }, [dark]);
 
   return (
-    <section className="
-     z-10 absolute top-3 right-3">
+    <section
+      className="
+     z-[999] fixed top-3 right-3"
+    >
       <motion.div
-        onClick={() =>setDark(!dark)}
+        onClick={() => setDark(!dark)}
         animate={{ rotateY: dark ? 180 : 0 }}
         transition={{ duration: 1.5, type: "spring", damping: 10 }}
         className="page

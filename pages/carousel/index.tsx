@@ -15,6 +15,7 @@ import cat4 from "/cat/cat4.jpeg";
 import cat5 from "/cat/cat5.jpeg";
 import cat6 from "/cat/cat6.jpeg";
 import { exit } from "process";
+import { setConfig } from "next/config";
 
 
 const Carousel : FC = () => {
@@ -44,6 +45,37 @@ const Carousel : FC = () => {
     
   }
 
+
+
+  const setMotion = (direction:string) => {
+   
+
+    if(direction === 'right'  ){
+      if(whichCat === catList.length) return
+      setWhichCat(whichCat+1)
+    }else if(direction=== 'left') {
+      if(whichCat === 0) return
+      setWhichCat(whichCat-1)
+    }
+
+  }
+
+
+    const keyMotion = (e:any)=>{
+
+    
+    if(e.keyCode ===37){
+      {whichCat !== 0? 
+      setMotion('left')   :null}
+    }else if (e.keyCode === 39){
+      {whichCat !== catList.length-1?
+      setMotion('right')
+      : null}
+    }else return
+
+    }
+
+
   return (
     <main
       style={{aspectRatio:'1.5'}}
@@ -63,9 +95,7 @@ const Carousel : FC = () => {
 
 
         <section
-            onKeyDown={(e)=>
-              {e.keyCode === 37? setWhichCat(whichCat-1)
-                : setWhichCat(whichCat+1)}}
+            onKeyDown={(e)=>keyMotion(e)}
            className="
             relative
             flex 
@@ -75,7 +105,7 @@ const Carousel : FC = () => {
         
         <button
           disabled={whichCat === 0}
-          onClick={()=>setWhichCat(whichCat-1)} 
+          onClick={()=>setMotion('left')} 
           >
           <BsCaretLeftFill  
             className={`
@@ -89,7 +119,7 @@ const Carousel : FC = () => {
             size='5vmin' />
         </button>
         <div
-          style={{transformStyle:'preserve-3d',perspective:'200rem'}}
+          onPointerLeave={()=>console.log('yes noe')}
          className="            
           w-[80vmin] h-[50vmin]
           relative
@@ -110,13 +140,14 @@ const Carousel : FC = () => {
             animate='animate'
             exit='exit'  
             custom={dec}   
-            transition={{type:'spring',damping:30,stiffness:100}}
+            transition={{duration:1,easings:'circOut'}}
             className=" 
               absolute w-[75vmin] h-[45vmin]
               rounded-xl overflow-hidden
               "
             >
             <Image 
+              alt={`${catList[whichCat]}`}
               objectFit="cover"
               height={.7} width={1}
              src={catList[whichCat]}
@@ -128,7 +159,7 @@ const Carousel : FC = () => {
           <button
           disabled={whichCat === catList.length-1}
             
-          onClick={()=>setWhichCat(whichCat+1)} 
+          onClick={()=>setMotion('right')} 
             >
           <BsCaretRightFill  
             className={`
