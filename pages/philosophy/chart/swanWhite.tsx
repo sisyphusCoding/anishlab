@@ -32,13 +32,15 @@ const SwanWhite: FC = () => {
        >
         <div
          className="
-          px-10
+          lg:px-10
+          px-[14vw]
           lg:py-40 
-          py-20
+          py-[5vmin]
           grow
           bg-[rgba(0,0,0,.1)] 
-          place-items-center
-          grid grid-cols-3
+          flex
+          flex-row items-center flex-wrap 
+          justify-between 
           text-zinc-300"
          >
 
@@ -47,11 +49,14 @@ const SwanWhite: FC = () => {
         <GiSwan size={swanSize} />
         <GiSwan size={swanSize} />
         <GiSwan size={swanSize} />
+
         <p
            className="
+            text-[clamp(.5rem,1vmin,1rem)]
+            max-w-md 
 
-            lg:text-md
-            lg:max-w-sm  p-4 text-xs"
+            p-4"
+
            >
 Based on observation, scientists may theorize that all swans are white.
           </p>  
@@ -60,10 +65,10 @@ Based on observation, scientists may theorize that all swans are white.
 
       <div 
          className="
-          px-10 
-
+          lg:px-10 
+          px-[14vw]
           lg:py-40 
-          py-20
+          py-[5vmin]
           min-h-full
           lg:max-w-[30%]
 
@@ -75,8 +80,10 @@ Based on observation, scientists may theorize that all swans are white.
 
         <p
            className="
-            lg:text-md
-            lg:max-w-sm max-w-xs px-2 text-xs"
+
+            text-[clamp(.5rem,1vmin,1rem)]
+            
+            lg:max-w-sm max-w-xs px-2"
            >
             The theory “All swans are white” is scientific, because the discovery of
 a black swan would show it to be false.
