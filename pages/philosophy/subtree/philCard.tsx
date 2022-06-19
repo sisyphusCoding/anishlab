@@ -12,15 +12,15 @@ const PhilCard:FC<Props> = ({title,author,children}) => {
   <div 
     className="
       min-h-screen min-w-full 
-      flex flex-col md:flex-row"
+      flex flex-col lg:flex-row"
      >
 
     <div 
     className="
-        bg-zinc-400 text-zinc-700
-        dark:bg-zinc-800 dark:text-zinc-400
+        bg-zinc-50 text-zinc-700
+        dark:bg-zinc-900 dark:text-zinc-300
         w-full lg:grow lg:w-fit
-        h-[30vh] md:min-h-screen
+        h-[30vh] lg:min-h-screen
         flex flex-col
         px-11
         lg:gap-6
@@ -40,9 +40,10 @@ const PhilCard:FC<Props> = ({title,author,children}) => {
 
     <div 
     className="
+    dark:bg-black
     grid place-items-center
     w-full
-    h-[70vh] md:min-h-screen ">
+    h-[70vh] lg:min-h-screen ">
         {children}
       </div>
 
