@@ -26,12 +26,15 @@ const SwanWhite: FC = () => {
         h-fit
         max-w-[80%]
         w-fit
+        lg:flex-row
+        flex-col
         flex items-stretch justify-between"
        >
         <div
          className="
           px-10
-          py-40 
+          lg:py-40 
+          py-20
           grow
           bg-[rgba(0,0,0,.1)] 
           place-items-center
@@ -46,8 +49,9 @@ const SwanWhite: FC = () => {
         <GiSwan size={swanSize} />
         <p
            className="
+
             lg:text-md
-            lg:max-w-sm max-w-xs px-2 text-xs"
+            lg:max-w-sm  p-4 text-xs"
            >
 Based on observation, scientists may theorize that all swans are white.
           </p>  
@@ -57,9 +61,12 @@ Based on observation, scientists may theorize that all swans are white.
       <div 
          className="
           px-10 
-          py-40
+
+          lg:py-40 
+          py-20
           min-h-full
-          max-w-[30%]
+          lg:max-w-[30%]
+
           flex flex-col items-center justify-between
           "
          >
