@@ -108,9 +108,14 @@ h4{
 }
 
 
-.scrollWrap>*{
-  
-  @apply snap-start snap-always
-  sticky 
+.scrollWrap>*{  
+  @apply
+  sticky
    top-0 transition-none ;
+}
+
+
+
+.scrollSnapWrapper::-webkit-scrollbar{
+  display:none;
 }

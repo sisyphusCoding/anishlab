@@ -22,21 +22,19 @@ const Philosophy: FC = () => {
 
     console.log("scroll Top:", st + wh);
     console.log("scrollY:", y);
-    scrollPerc = Math.round(((st) / sh) * 100);
+    scrollPerc = Math.round((st / sh) * 100);
     console.log("scroll %:", scrollPerc);
   }
 
   let whichOne = 0;
 
-  if (scrollPerc ===0) {
+  if (scrollPerc === 0) {
     whichOne = 0;
-  }else if(scrollPerc===34){
-    whichOne=1;
-  }else if(scrollPerc>=60){
-  whichOne=2;
-}
-
-  whichOne = 0
+  } else if (scrollPerc === 34) {
+    whichOne = 1;
+  } else if (scrollPerc >= 60) {
+    whichOne = 2;
+  }
 
   console.log(whichOne);
 
@@ -60,11 +58,7 @@ const Philosophy: FC = () => {
         <div
           className={` 
        
-        ${
-          whichOne === 0
-            ? "opacity-100 "
-            : "opacity-0"
-        } 
+        ${whichOne === 0 ? "opacity-100 " : "opacity-0"} 
         `}
         >
           <PhilCard title="are all swans white?" author="karl popper">
@@ -75,11 +69,7 @@ const Philosophy: FC = () => {
         <div
           className={`
         
-        ${
-          whichOne === 0
-            ? "opacity-100"
-            : "opacity-0 "
-        } 
+        ${whichOne === 1 ? "opacity-100" : "opacity-0 "} 
         `}
         >
           <PhilCard
@@ -106,11 +96,7 @@ const Philosophy: FC = () => {
         <div
           className={`
         min-h-screen min-w-full 
-        ${
-          whichOne === 0
-            ? "opacity-100 "
-            : "opacity-0 "
-        } 
+        ${whichOne === 2 ? "opacity-100 " : "opacity-0 "} 
       `}
         >
           <PhilCard
