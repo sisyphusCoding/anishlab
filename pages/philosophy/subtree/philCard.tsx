@@ -25,10 +25,10 @@ const PhilCard: FC<Props> = ({ title, author, children }) => {
         lg:justify-center
         items-center justify-evenly"
       >
-        <h4
-          className="
 
-         
+  
+        <h4
+          className="         
           dark:text-zinc-800
           items-end
           gap-2
@@ -47,7 +47,8 @@ const PhilCard: FC<Props> = ({ title, author, children }) => {
           </span>
           <span className="text-xs lg:text-lg">-{author}</span>
         </h4>
-      </div>
+
+  </div>
 
       <div
         className="

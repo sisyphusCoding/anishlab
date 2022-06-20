@@ -22,21 +22,21 @@ const Philosophy: FC = () => {
 
     console.log("scroll Top:", st + wh);
     console.log("scrollY:", y);
-    scrollPerc = Math.round(((st + wh) / sh) * 100);
+    scrollPerc = Math.round(((st) / sh) * 100);
     console.log("scroll %:", scrollPerc);
   }
 
   let whichOne = 0;
 
-  if (scrollPerc > 0) {
+  if (scrollPerc ===0) {
     whichOne = 0;
-    if (scrollPerc > 65) {
-      whichOne = 1;
-      if (scrollPerc > 98) {
-        whichOne = 2;
-      }
-    }
-  }
+  }else if(scrollPerc===34){
+    whichOne=1;
+  }else if(scrollPerc>=60){
+  whichOne=2;
+}
+
+  whichOne = 0
 
   console.log(whichOne);
 
@@ -46,26 +46,26 @@ const Philosophy: FC = () => {
       <section
         ref={rootRef}
         className="
-     flex flex-col  
+       flex flex-col  
       gap-6
+      scroll-smooth
       relative
       max-h-screen
-      snap-y snap-mandatory
+      scrollWrap
       overflow-x-hidden   
+      snap-y snap-mandatory
+      overflow-y-scroll
       min-h-screen min-w-full"
       >
         <div
-          className={`
-
-        
-        transform-gpu 
-        transition-all ease duration-200
+          className={` 
+       
         ${
           whichOne === 0
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-5"
+            ? "opacity-100 "
+            : "opacity-0"
         } 
-        sticky top-0`}
+        `}
         >
           <PhilCard title="are all swans white?" author="karl popper">
             <SwanWhite />
@@ -74,15 +74,13 @@ const Philosophy: FC = () => {
 
         <div
           className={`
-
-        transform-gpu 
-        transition-all ease duration-200
+        
         ${
-          whichOne === 1
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-5"
+          whichOne === 0
+            ? "opacity-100"
+            : "opacity-0 "
         } 
-        sticky top-0`}
+        `}
         >
           <PhilCard
             title="if you meet buddha on the road , kill him."
@@ -107,16 +105,13 @@ const Philosophy: FC = () => {
 
         <div
           className={`
-        min-h-screen min-w-full
-        overflow-hidden 
-        transform-cpu
-        transition-all ease duration-200
+        min-h-screen min-w-full 
         ${
-          whichOne === 2
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-5"
+          whichOne === 0
+            ? "opacity-100 "
+            : "opacity-0 "
         } 
-        sticky top-0`}
+      `}
         >
           <PhilCard
             title="A great many people think they are thinking when they are merely

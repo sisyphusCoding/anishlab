@@ -106,3 +106,11 @@ h4{
   @apply filter-none grayscale-0 opacity-100 ;
   transform:perspective(200rem) translate3d(0,0,0) ;
 }
+
+
+.scrollWrap>*{
+  
+  @apply snap-start snap-always
+  sticky 
+   top-0 transition-none ;
+}
