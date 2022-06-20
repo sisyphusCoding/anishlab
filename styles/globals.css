@@ -119,3 +119,9 @@ h4{
 .scrollSnapWrapper::-webkit-scrollbar{
   display:none;
 }
+
+
+
+.revealSnap{
+  @apply  opacity-100 transition-all duration-500 ease-in-Expo;
+}
