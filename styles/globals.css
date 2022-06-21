@@ -123,5 +123,17 @@ h4{
 
 
 .revealSnap{
-  @apply  opacity-100 transition-all duration-500 ease-in-Expo;
+  @apply  opacity-100 filter-none transition-all duration-500 ease-in-Expo;
+}
+
+
+.cardSnap>*{
+  @apply transition-all ease-in-Expo duration-[2s] will-change-transform;
+  transform:perspective(200rem) translate3d(0,0,-150rem);
+}
+
+.revealSnap>*{
+
+  @apply transition-all ease-in-Expo duration-1000 will-change-transform;
+  transform:perspective(200rem) translate3d(0,0,0);
 }

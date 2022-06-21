@@ -53,10 +53,10 @@ const Carouselsnap: FC = () => {
       dark:drop-shadow-[0_3px_10px_#171717]       
       rounded-2xl
       snap-mandatory snap-x 
-      scroll-mx-10 
       overflow-y-hidden
       overflow-x-auto  
       gap-0 
+        border-2 border-black
       flex items-center justify-start
       max-w-[100vw]
       h-[60vh] 

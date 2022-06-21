@@ -3,13 +3,14 @@ import Image from "next/image";
 const ScrollSnap: FC = () => {
   if (typeof window !== "undefined") {
     document.querySelector(".scrollSnapWrapper")?.scrollIntoView({
-      inline: "start",
+      inline: "center",
       behavior: "smooth",
     });
 
     const scrollWrap = document.querySelector(".scrollSnapWrapper");
 
     const cardSnap = document.querySelectorAll(".cardSnap");
+    const imageSnap = document.querySelectorAll("imageSnap");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -19,7 +20,7 @@ const ScrollSnap: FC = () => {
       {
         threshold: [0.99, 1],
         root: scrollWrap,
-        rootMargin: "50%",
+        rootMargin: "0%",
       }
     );
 
@@ -41,7 +42,7 @@ const ScrollSnap: FC = () => {
       let progress = elScroll.scrollLeft / elScroll.scrollWidth;
       progress = Math.round((progress + offset) * 100);
       elProg.style.width = `${progress}%`;
-      elProg.style.left = `${elScroll.scrollLeft}px`;
+      //elProg.style.left = `${elScroll.scrollLeft}px`;
     }
   };
 
@@ -52,65 +53,83 @@ const ScrollSnap: FC = () => {
   return (
     <main
       className="
+      font-space
       flex flex-col items-center justify-center
       min-h-screen min-w-full"
     >
-      <div
-        style={{
-          transformStyle: "preserve-3d",
-        }}
-        ref={scrollRef}
-        onScrollCapture={() => scrolling()}
-        className=" 
+      <section
+        className="
+        gap-5 
+        flex flex-col justify-center items-center"
+      >
+        <h4 className="text-xl lg:text-2xl w-full text-left">
+          <span>Carousel made using scroll-snap</span>
+        </h4>
+        <div
+          ref={scrollRef}
+          onScrollCapture={() => scrolling()}
+          className="  
         scrollSnapWrapper
+          will-change-scroll
         scroll-smooth
         relative
         filter drop-shadow-[0_5px_10px_rgba(0,0,0,.7)]
-        lg:max-w-[100vmin]
+        md:max-w-[95vw]
         max-w-[95vmin]
         overflow-x-auto
         snap-x snap-mandatory
-        flex items-end justify-start
+        flex items-center justify-start
         h-fit w-fit "
-      >
-        <p
-          ref={progRef}
-          className="  
-          left-5 
-          border-t-4 border-white
-          bg-opacity-40
-          z-40
-          rounded-md
-          absolute
-          transition-all ease-linear duration-200
-          bottom-0 bg-black h-2"
-        />
-
-        {[0, 1, 2, 3, 4, 5, 6].map((item, index) => (
-          <div
-            key={index}
-            className="  
-             rounded-xl
-            scroll-px-9
-            cardSnap opacity-0 duration-1000 
+        >
+          {[0, 1, 2, 3, 4, 5, 6].map((item, index) => (
+            <div
+              style={{
+                transformStyle: "preserve-3d",
+              }}
+              key={index}
+              className={`
+            ${index === 0 ? "ml-[50%]" : null}
+            ${index === 6 ? "mr-[50%]" : null}
+            filter blur-sm grayscale
+            cardSnap opacity-50 duration-1000 
             transition-all ease-in-Expo
-            snap-start snap-always
+            snap-center snap-always
             inline-block h-auto 
             min-w-[95vmin] 
-            lg:min-w-[100vmin]"
-          >
-            <Image
-              className="rounded-xl"
-              layout="responsive"
-              alt={`art-${index}`}
-              objectFit="cover"
-              height={600}
-              width={1000}
-              src={`/art/art-${item}.jpg`}
-            />
-          </div>
-        ))}
-      </div>
+            md:min-w-[80vmin]`}
+            >
+              <Image
+                className=""
+                layout="responsive"
+                alt={`art-${index}`}
+                objectFit="cover"
+                height={600}
+                width={1000}
+                src={`/art/art-${item}.jpg`}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div
+          className="bg-white dark:bg-black
+          relative
+          bg-opacity-50
+           backdrop-blur-sm backdrop-filter h-1 w-full "
+        >
+          <p
+            ref={progRef}
+            className="  
+     
+          absolute
+          left-0
+           
+          z-40
+          transition-all ease-linear duration-200
+          bottom-0 bg-black dark:bg-zinc-400 h-1"
+          />
+        </div>
+      </section>
     </main>
   );
 };
