@@ -4,6 +4,7 @@ import{motion} from 'framer-motion'
 import Image from 'next/image'
 import { NextPage } from 'next'
 import {useScroll} from 'react-use'
+import { WrappedBuildError } from 'next/dist/server/base-server'
 
 const OppScroll:NextPage = ( ) =>{
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -14,26 +15,26 @@ const OppScroll:NextPage = ( ) =>{
     <div
       ref={scrollRef}
      className='
-      border-8 border-red-400
       scroll-smooth
-      relative
       overflow-y-scroll 
       snap-y snap-mandatory
       flex flex-col items-start justify-start
-      max-h-[200vh] 
+      h-screen
        w-full '
       >
 
     <div 
-       className='
-        absolute top-0
+
+      style={{insetInlineStart:0}}
+       className=' 
+        sticky top-0
         overflow-hidden
         min-h-screen min-w-full 
         snap-start snap-always
         '>
 
         <h1
-        style={{transform:`translate3d(0,${y/50}%,0)`}}
+        style={{transform:`translate3d(0,${y/10}vh,0)`}}
          className='
           z-10
           mix-blend-color-dodge
@@ -64,13 +65,15 @@ const OppScroll:NextPage = ( ) =>{
         quote="Do stuff. be clenched, curious. Not waiting for inspiration's shove or society's kiss on your forehead. Pay attention. It's all about paying attention. attention is vitality. It connects you with others. It makes you eager. stay eager."
         author='susan sontang'/>
 
+   <Wrapper index={1}
+      quote='Life has no meaning a priori… It is up to you to give it a meaning, and value is nothing but the meaning that you choose'  
+      author='Jean-Paul Sartre'/>
 
     <Wrapper 
         index={2} 
         quote='The world would be happier if men had the same capacity to be silent that they have to speak.' 
         author='Spinoza'/>
 
-     
 
     </div>
   )
@@ -87,17 +90,20 @@ const Wrapper = ({index,quote,author}:wrapperProps) => {
   const[enter,setEnter] = useState<boolean>(false)
   return(
     <motion.div
+      style={{insetInlineStart:0}}
       onViewportEnter={()=>setEnter(true)}
       onViewportLeave={()=>setEnter(false)}
      className={`
-        ${enter? 'opacity-100 delay-500':'opacity-0 delay-[0]'}
+
+        
       sticky top-0
       z-30
       transition-all ease duration-500 
       snap-start snap-always
       overflow-hidden 
       lg:flex-row flex-col
-      h-screen min-w-full flex items-center justify-between`}
+      
+      min-h-screen min-w-full flex items-center justify-between`}
       >
       <div  
         className='
@@ -108,7 +114,7 @@ const Wrapper = ({index,quote,author}:wrapperProps) => {
         <Image 
           layout='responsive'
           objectFit='cover'
-          height={700} width={580} 
+          height={700} width={500} 
           src={`/phil/phil-${index}.webp`} alt='author'/>
       </div>
        <div 
@@ -120,16 +126,19 @@ const Wrapper = ({index,quote,author}:wrapperProps) => {
           overflow-hidden'>
         <motion.p 
           className='   
+          text-justify
+          tracking-tight
           p-4 
-          text-xl md:text-3xl lg:text-4xl xl:text-6xl
-          -tracking-wider w-3/4'
+          text-xl md:text-3xl lg:text-4xl
+           w-3/4'
          >
           {quote}
         </motion.p>
          <h5
           className='
           uppercase
-          tracking-tighter
+          md:text-lg lg:text-xl
+          -tracking-wide
           self-end px-32'
           >
           -{author}
