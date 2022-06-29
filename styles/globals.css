@@ -137,3 +137,9 @@ h4{
   @apply transition-all ease-in-Expo duration-1000 will-change-transform;
   transform:perspective(200rem) translate3d(0,0,0);
 }
+
+
+
+.vid::-webkit-media-controls {
+    display:none !important;
+}

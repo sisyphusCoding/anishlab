@@ -16,6 +16,7 @@ const Layout: FC<Props> = ({ children }) => {
       bg-zinc-200 text-zinc-700
       dark:bg-zinc-900
       dark:text-zinc-400 
+      max-h-screen
       min-h-screen min-w-full max-w-[100vw]"
     >
       <Head>

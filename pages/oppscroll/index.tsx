@@ -9,37 +9,43 @@ import { WrappedBuildError } from 'next/dist/server/base-server'
 const OppScroll:NextPage = ( ) =>{
   const scrollRef = useRef<HTMLDivElement>(null)
   const{y} = useScroll(scrollRef)
+  
+ let parallax = 0
+  const {current:elContainer} = scrollRef
 
+  if(elContainer){
+    parallax = y / elContainer?.clientHeight
+    console.log(parallax) 
+  }
 
   return(
     <div
       ref={scrollRef}
      className='
-      scroll-smooth
-      overflow-y-scroll 
+      scroll-smooth  
       snap-y snap-mandatory
+      overflow-y-scroll 
       flex flex-col items-start justify-start
-      h-screen
+      h-screen max-h-screen
        w-full '
       >
 
-    <div 
-
-      style={{insetInlineStart:0}}
+    <div  
        className=' 
-        sticky top-0
+        snap-start snap-always
         overflow-hidden
         min-h-screen min-w-full 
-        snap-start snap-always
         '>
 
         <h1
-        style={{transform:`translate3d(0,${y/10}vh,0)`}}
-         className='
-          z-10
+        style={{
+            transform:`translate3d(0,${parallax}rem,0)`,
+            zIndex:`${parallax<1? 10 :-10}`     
+            }}
+         className=' 
           mix-blend-color-dodge
           top-[40vh]
-          transition-all ease-out duration-[0s]
+          transition-all ease-in-Expo duration-[0s]
           min-w-full 
           text-center
           lg:tracking-tight
@@ -50,8 +56,10 @@ const OppScroll:NextPage = ( ) =>{
         </h1>
 
     <video    
+      
       muted playsInline autoPlay loop
       className='
+      vid   
       object-cover 
       vid 
       min-h-screen min-w-full'
@@ -93,16 +101,18 @@ const Wrapper = ({index,quote,author}:wrapperProps) => {
       style={{insetInlineStart:0}}
       onViewportEnter={()=>setEnter(true)}
       onViewportLeave={()=>setEnter(false)}
+       
      className={`
-
-        
-      sticky top-0
+      ${enter? 
+      'duration-[2s] opacity-100 delay-100'
+      :'duration-[0s] delay-[0s] opacity-0'
+      }
       z-30
-      transition-all ease duration-500 
+      transition-all ease 
       snap-start snap-always
       overflow-hidden 
       lg:flex-row flex-col
-      
+      max-h-screen h-screen 
       min-h-screen min-w-full flex items-center justify-between`}
       >
       <div  
@@ -119,6 +129,7 @@ const Wrapper = ({index,quote,author}:wrapperProps) => {
       </div>
        <div 
         className=' 
+        sticky bottom-0 lg:top-0 
         bg-white dark:bg-black 
         lg:h-screen h-[30vh]
         lg:w-1/2 w-full 
