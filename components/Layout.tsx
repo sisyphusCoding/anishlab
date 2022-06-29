@@ -13,9 +13,10 @@ const Layout: FC<Props> = ({ children }) => {
       overflow-hidden
       relative
       flex flex-col items-center justify-center
-      bg-zinc-300 text-zinc-700
+      bg-zinc-200 text-zinc-700
       dark:bg-zinc-900
       dark:text-zinc-400 
+      max-h-fit
       min-h-screen min-w-full max-w-[100vw]"
     >
       <Head>
