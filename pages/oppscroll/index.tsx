@@ -1,12 +1,12 @@
-import React,{FC , ReactNode,useEffect,useRef, useState} from 'react'
+import React,{FC , ReactNode,Ref,RefObject,useEffect,useRef, useState} from 'react'
 
 import{motion} from 'framer-motion'
 import Image from 'next/image'
 import { NextPage } from 'next'
 import {useScroll} from 'react-use'
-import { WrappedBuildError } from 'next/dist/server/base-server'
 
 const OppScroll:NextPage = ( ) =>{
+
   const scrollRef = useRef<HTMLDivElement>(null)
   const{y} = useScroll(scrollRef)
   
@@ -15,7 +15,7 @@ const OppScroll:NextPage = ( ) =>{
 
   if(elContainer){
     parallax = y / elContainer?.clientHeight
-    console.log(parallax) 
+    console.log(parallax)
   }
 
   return(
@@ -23,30 +23,30 @@ const OppScroll:NextPage = ( ) =>{
       ref={scrollRef}
      className='
       scroll-smooth  
-      snap-y snap-mandatory
-      overflow-y-scroll 
+      overflow-x-hidden overflow-y-scroll
+      snap-y snap-mandatory 
       flex flex-col items-start justify-start
-      h-screen max-h-screen
-       w-full '
+      max-h-screen  w-screen
+      '
       >
 
     <div  
        className=' 
         snap-start snap-always
-        overflow-hidden
-        min-h-screen min-w-full 
+        flex items-center justify-center  
+        min-h-screen w-screen
+        relative 
         '>
-
         <h1
         style={{
-            transform:`translate3d(0,${parallax}rem,0)`,
-            zIndex:`${parallax<1? 10 :-10}`     
+            transform:`translate3d(0,${parallax*100}vh,0)`,
+            opacity:`${parallax<.5? 1:0}` 
             }}
          className=' 
           mix-blend-color-dodge
-          top-[40vh]
           transition-all ease-in-Expo duration-[0s]
-          min-w-full 
+          w-full 
+          z-10
           text-center
           lg:tracking-tight
           -tracking-widest
@@ -61,8 +61,7 @@ const OppScroll:NextPage = ( ) =>{
       className='
       vid   
       object-cover 
-      vid 
-      min-h-screen min-w-full'
+      h-full min-w-full absolute top-0'
        > 
             <source src='/phil/phil.mp4'/> 
         </video>  
@@ -70,20 +69,24 @@ const OppScroll:NextPage = ( ) =>{
 
 
     <Wrapper index={0} 
+        whichParent={scrollRef}
         quote="Do stuff. be clenched, curious. Not waiting for inspiration's shove or society's kiss on your forehead. Pay attention. It's all about paying attention. attention is vitality. It connects you with others. It makes you eager. stay eager."
         author='susan sontang'/>
 
    <Wrapper index={1}
+
+        whichParent={scrollRef}
       quote='Life has no meaning a priori… It is up to you to give it a meaning, and value is nothing but the meaning that you choose'  
       author='Jean-Paul Sartre'/>
 
     <Wrapper 
         index={2} 
+
+        whichParent={scrollRef}
         quote='The world would be happier if men had the same capacity to be silent that they have to speak.' 
         author='Spinoza'/>
 
-
-    </div>
+</div>
   )
 }
 
@@ -92,45 +95,46 @@ interface wrapperProps {
   index:number
   quote:string
   author:string
+  whichParent:RefObject<Element>
 }
 
-const Wrapper = ({index,quote,author}:wrapperProps) => {
+const Wrapper = ({index,quote,author,whichParent}:wrapperProps) => {
   const[enter,setEnter] = useState<boolean>(false)
   return(
-    <motion.div
-      style={{insetInlineStart:0}}
+    <motion.div 
+      viewport={{root:whichParent}}
       onViewportEnter={()=>setEnter(true)}
-      onViewportLeave={()=>setEnter(false)}
-       
+      onViewportLeave={()=>setEnter(false)} 
      className={`
       ${enter? 
       'duration-[2s] opacity-100 delay-100'
       :'duration-[0s] delay-[0s] opacity-0'
       }
       z-30
-      transition-all ease 
+      sticky top-0
       snap-start snap-always
-      overflow-hidden 
+      transition-all ease 
+      bg-white dark:bg-black 
       lg:flex-row flex-col
-      max-h-screen h-screen 
+      max-h-screen
       min-h-screen min-w-full flex items-center justify-between`}
       >
       <div  
         className='
+        z-50
         w-full h-[70vh]
-        lg:w-1/2 lg:h-screen 
-        overflow-hidden bg-black'
+        lg:w-1/2 lg:min-h-screen 
+        overflow-hidden dark:bg-black'
         >
-        <Image 
+        <Image
           layout='responsive'
-          objectFit='cover'
-          height={700} width={500} 
+          width={500} height={800}
           src={`/phil/phil-${index}.webp`} alt='author'/>
       </div>
        <div 
         className=' 
         sticky bottom-0 lg:top-0 
-        bg-white dark:bg-black 
+         dark:bg-black 
         lg:h-screen h-[30vh]
         lg:w-1/2 w-full 
         flex items-center justify-center flex-col

@@ -9,6 +9,9 @@ module.exports = {
       transitionTimingFunction :{
         'in-Expo' : ' cubic-bezier(0.5, 1, 0.89, 1)'
       },
+      width:{
+        screen:'100vw'
+      },
       fontFamily: {
         accuratist:['Accuratist', 'sans-serif'],
         zizo:['ZIZO','serif'],
