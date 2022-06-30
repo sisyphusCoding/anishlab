@@ -76,7 +76,7 @@ const OppScroll:NextPage = ( ) =>{
    <Wrapper index={1}
 
         whichParent={scrollRef}
-      quote='Life has no meaning a priori… It is up to you to give it a meaning, and value is nothing but the meaning that you choose'  
+       quote='I am going to outlive myself. Eat, sleep, sleep, eat. Exist slowly, softly, like these trees, like a puddle of water, like the red bench in the streetcar' 
       author='Jean-Paul Sartre'/>
 
     <Wrapper 
@@ -136,7 +136,7 @@ const Wrapper = ({index,quote,author,whichParent}:wrapperProps) => {
         sticky bottom-0 lg:top-0 
          dark:bg-black 
         lg:h-screen h-[30vh]
-        lg:w-1/2 w-full 
+        w-full 
         flex items-center justify-center flex-col
           overflow-hidden'>
         <motion.p 
@@ -144,19 +144,21 @@ const Wrapper = ({index,quote,author,whichParent}:wrapperProps) => {
           text-justify
           tracking-tight
           p-4 
-          text-xl md:text-3xl lg:text-4xl
-           w-3/4'
+          lg:w-1/2 w-4/5 md:w-3/5
+          md:text-xl lg:text-4xl
+          '
          >
           {quote}
         </motion.p>
          <h5
           className='
           uppercase
+          text-xs font-bold
           md:text-lg lg:text-xl
           -tracking-wide
           self-end px-32'
           >
-          -{author}
+          - {author}
         </h5> 
       </div>
     </motion.div>
