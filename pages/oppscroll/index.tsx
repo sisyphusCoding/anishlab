@@ -47,7 +47,7 @@ const OppScroll: NextPage = () => {
         snap-start snap-always
         flex items-center justify-center  
         min-h-screen w-screen
-        lg:relative 
+        
         "
       >
         <div
