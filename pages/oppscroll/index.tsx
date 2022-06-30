@@ -106,10 +106,6 @@ const Wrapper = ({index,quote,author,whichParent}:wrapperProps) => {
       onViewportEnter={()=>setEnter(true)}
       onViewportLeave={()=>setEnter(false)} 
      className={`
-      ${enter? 
-      'duration-[2s] opacity-100 delay-100'
-      :'duration-[0s] delay-[0s] opacity-0'
-      }
       z-30
       sticky top-0
       snap-start snap-always
@@ -134,7 +130,7 @@ const Wrapper = ({index,quote,author,whichParent}:wrapperProps) => {
        <div 
         className=' 
         sticky bottom-0 lg:top-0 
-         dark:bg-black 
+        dark:bg-black bg-white
         lg:h-screen h-[30vh]
         w-full 
         flex items-center justify-center flex-col
@@ -152,11 +148,13 @@ const Wrapper = ({index,quote,author,whichParent}:wrapperProps) => {
         </motion.p>
          <h5
           className='
-          uppercase
+          lg:px-32
+          px-10 md:px-20
+          self-end
+          uppercase 
           text-xs font-bold
           md:text-lg lg:text-xl
-          -tracking-wide
-          self-end px-32'
+          -tracking-wide'
           >
           - {author}
         </h5> 
