@@ -13,11 +13,15 @@ const OppScroll:NextPage = ( ) =>{
   const{y} = useScroll(scrollRef)
   
  let parallax = 0
+  let progressW = 0
   const {current:elContainer} = scrollRef
 
   if(elContainer){
     parallax = y / elContainer?.clientHeight
-    console.log(parallax)
+
+    progressW =  elContainer.scrollTop / (elContainer.offsetHeight*6)
+
+    console.log(progressW)
   }
 
   return(
@@ -31,6 +35,22 @@ const OppScroll:NextPage = ( ) =>{
       max-h-screen  w-screen
       '
       >
+
+    <p
+      className='
+        flex items-center justify-start
+        z-50
+        bg-white bg-opacity-50
+        backdrop-blur-sm backdrop-filter
+        h-2 w-full
+        absolute  left-0'
+      >
+      <span 
+          style={{transform :`scale(${progressW},1)`,transformOrigin:'left'}}
+          className='
+          w-full
+          h-full bg-zinc-900 bg-opacity-90 transition-all ease duration-[0s]' />
+    </p>
 
     <div  
        className=' 
