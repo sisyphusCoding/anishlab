@@ -148,7 +148,7 @@ const Wrapper = ({index,quote,author,whichParent}:wrapperProps) => {
       onViewportLeave={()=>setEnter(false)} 
      className={`
       z-30
-      sticky top-0
+      sticky top-0 lg:relative
       snap-start snap-always
       transition-all ease 
       bg-white dark:bg-black 
