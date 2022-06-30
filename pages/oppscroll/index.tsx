@@ -43,7 +43,7 @@ const OppScroll:NextPage = ( ) =>{
         <div 
 
         style={{
-            transform:`translate3d(0,${parallax*40}vh,0)`,
+            transform:`translate3d(0,${parallax*30}vh,0)`,
             opacity:`${parallax<.5? 1:0}` 
             }}
           className='
@@ -179,9 +179,10 @@ const Wrapper = ({index,quote,author,whichParent}:wrapperProps) => {
         <motion.p 
           className='   
           text-justify
-          tracking-tight
-          p-4 
-          lg:w-1/2 w-4/5 md:w-3/5
+          leading-snug
+          -tracking-wide
+          px-10 py-5
+           w-5/6
           md:text-xl lg:text-4xl
           '
          >
