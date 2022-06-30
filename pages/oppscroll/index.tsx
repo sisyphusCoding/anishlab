@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { NextPage } from 'next'
 import {useScroll} from 'react-use'
 
+import{BsMouseFill} from 'react-icons/bs'
+import{FiChevronDown} from 'react-icons/fi'
 const OppScroll:NextPage = ( ) =>{
 
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -32,14 +34,34 @@ const OppScroll:NextPage = ( ) =>{
 
     <div  
        className=' 
+        dark:text-zinc-500
         snap-start snap-always
         flex items-center justify-center  
         min-h-screen w-screen
         relative 
         '>
+        <div 
+
+        style={{
+            transform:`translate3d(0,${parallax*40}vh,0)`,
+            opacity:`${parallax<.5? 1:0}` 
+            }}
+          className='
+          
+          mix-blend-color-dodge
+          rounded-2xl 
+          md:text-5xl text-4xl
+          flex flex-col items-center justify-center
+          absolute py-2 bottom-0 z-10'>
+          <BsMouseFill/>
+          <span
+            className='text-xl md:text-2xl animate-bounce mt-2'>
+          <FiChevronDown/>
+          </span>
+        </div>
         <h1
         style={{
-            transform:`translate3d(0,${parallax*100}vh,0)`,
+            transform:`translate3d(0,${parallax*100}rem,0)`,
             opacity:`${parallax<.5? 1:0}` 
             }}
          className=' 
