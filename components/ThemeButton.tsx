@@ -2,11 +2,24 @@ import { RiSunFill, RiMoonFill } from "react-icons/ri";
 
 import { motion } from "framer-motion";
 import { useEffect, useState, FC } from "react";
-
+import{useEffectOnce} from 'react-use'
 const ThemeButton: FC = () => {
   const [dark, setDark] = useState<boolean>(false);
 
+  
+  useEffectOnce(()=>{
+
+
+    if(window.matchMedia('(prefers-color-scheme:dark)').matches){
+      setDark(true)
+    }
+
+  })  
+
+
   useEffect(() => {
+
+
     {
       dark
         ? document.documentElement.classList.add("dark")
