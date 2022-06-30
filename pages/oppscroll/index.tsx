@@ -41,11 +41,13 @@ const OppScroll: NextPage = () => {
     >
       <div
         className=" 
+        sticky top-0
+        overflow-hidden 
         dark:text-zinc-500
         snap-start snap-always
         flex items-center justify-center  
         min-h-screen w-screen
-        relative 
+        lg:relative 
         "
       >
         <div
@@ -54,7 +56,6 @@ const OppScroll: NextPage = () => {
             opacity: `${parallax < 0.5 ? 1 : 0}`,
           }}
           className="
-          
           mix-blend-color-dodge
           rounded-2xl 
           md:text-5xl text-4xl
