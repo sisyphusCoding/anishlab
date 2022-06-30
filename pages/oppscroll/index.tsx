@@ -173,7 +173,7 @@ const Wrapper = ({index,quote,author,whichParent}:wrapperProps) => {
         sticky bottom-0 lg:relative
         dark:bg-black bg-white
         lg:h-screen h-[30vh]
-        w-full 
+        w-full lg:w-1/2
         flex items-center justify-center flex-col
           overflow-hidden'>
         <motion.p 
