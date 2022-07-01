@@ -144,3 +144,7 @@ h4{
     display:none !important;
 }
 
+.parallaxScroll::-webkit-scrollbar{
+  display:none;
+}
+

@@ -13,8 +13,9 @@ const OppScroll:NextPage = ( ) =>{
   const{y} = useScroll(scrollRef)
   
  let parallax = 0
-  let progressW = 0
-  const {current:elContainer} = scrollRef
+ let progressW = 0
+
+ const {current:elContainer} = scrollRef
 
   if(elContainer){
     parallax = y / elContainer?.clientHeight
@@ -28,6 +29,7 @@ const OppScroll:NextPage = ( ) =>{
     <div
       ref={scrollRef}
      className='
+      parallaxScroll
       scroll-smooth  
       overflow-x-hidden overflow-y-scroll
       snap-y snap-mandatory 
@@ -48,7 +50,7 @@ const OppScroll:NextPage = ( ) =>{
       <span 
           style={{transform :`scale(${progressW},1)`,transformOrigin:'left'}}
           className='
-          w-full
+          w-full absolute
           h-full bg-zinc-900 bg-opacity-90 transition-all ease duration-[0s]' />
     </p>
 
@@ -66,8 +68,7 @@ const OppScroll:NextPage = ( ) =>{
             transform:`translate3d(0,${parallax*30}vh,0)`,
             opacity:`${parallax<.5? 1:0}` 
             }}
-          className='
-          
+          className=' 
           mix-blend-color-dodge
           rounded-2xl 
           md:text-5xl text-4xl
@@ -168,7 +169,7 @@ const Wrapper = ({index,quote,author,whichParent}:wrapperProps) => {
       onViewportLeave={()=>setEnter(false)} 
      className={`
       z-30
-      sticky top-0 lg:relative
+      sticky top-0 
       snap-start snap-always
       transition-all ease 
       bg-white dark:bg-black 
