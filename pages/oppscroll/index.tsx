@@ -45,6 +45,7 @@ const OppScroll: NextPage = () => {
       overflow-x-hidden overflow-y-scroll
       snap-y snap-mandatory 
       flex flex-col items-start justify-start
+      bg-zinc-200 dark:bg-black
       max-h-screen  w-screen relative
       "
     >
@@ -208,8 +209,11 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
 
 
   let opacity  = 1 - checkCrossed
+
+  const scrollingY = currentScroll - childScrollTop 
+
+  const px = Math.round((scrollingY / topScroll)*100)
  
-  let px = 100 - (opacity * 100)
 
   
 
@@ -225,7 +229,6 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
       lg:relative 
       snap-start snap-always
       transition-all ease-in-Expo duration-150
-      bg-white dark:bg-black 
       lg:flex-row flex-col 
       h-screen min-w-full flex items-center justify-between`}
     >
@@ -235,13 +238,13 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
         z-50
         w-full h-[70vh]
         lg:w-1/2 lg:min-h-screen 
-        overflow-hidden dark:bg-black`}
+        overflow-hidden`}
       >
         <Image
           style={{
-          transform:`translate3d(0,${px}%,0)`
+          transform:`translate3d(0,${px}vh,0)`,
+          transition:'all ease 0.1s'
           }}
-          className='ease-in-Expo transition-all'
           layout="responsive"
           width={500}
           height={800}
@@ -252,13 +255,17 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
       <div
         className=" 
         sticky bottom-0 
-        dark:bg-black bg-white
+        overflow-hidden 
         lg:h-screen h-[30vh]
         w-full lg:w-1/2
         flex items-center justify-center flex-col
      "
-      > {px}
+      > 
         <motion.p
+          style={{
+          transform:`translate3d(0,-${px}%,0)`,
+          transition:'all ease 0.1s'
+          }}
           className="   
           text-justify
           leading-snug
@@ -271,6 +278,11 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
           {quote}
         </motion.p>
         <h5
+
+          style={{
+          transform:`translate3d(0,-${px}%,0)`,
+          transition:'all ease 0.1s'
+          }}
           className="
           lg:px-32
           px-10 md:px-20
