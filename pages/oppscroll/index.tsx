@@ -204,13 +204,19 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
   const scrolling =  Math.abs(currentScroll - childScrollTop )
 
 
-  const checkCrossed = scrolling / topScroll
+  const checkCrossed = Math.round((scrolling / topScroll)*10)/10
 
 
   let opacity  = 1 - checkCrossed
+ 
+  let px = 100 - (opacity * 100)
+
+  
+
+
 
   return (
-    <motion.div
+    <div
       style={{opacity:opacity}}
       ref={childRef}
       className={`
@@ -218,7 +224,7 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
       z-30
       lg:relative 
       snap-start snap-always
-      transition-all ease 
+      transition-all ease-in-Expo duration-150
       bg-white dark:bg-black 
       lg:flex-row flex-col 
       h-screen min-w-full flex items-center justify-between`}
@@ -232,6 +238,10 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
         overflow-hidden dark:bg-black`}
       >
         <Image
+          style={{
+          transform:`translate3d(0,${px}%,0)`
+          }}
+          className='ease-in-Expo transition-all'
           layout="responsive"
           width={500}
           height={800}
@@ -247,7 +257,7 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
         w-full lg:w-1/2
         flex items-center justify-center flex-col
      "
-      >
+      > {px}
         <motion.p
           className="   
           text-justify
@@ -273,7 +283,7 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
           - {author}
         </h5>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
