@@ -212,7 +212,7 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
 
   const scrollingY = currentScroll - childScrollTop 
 
-  const px = Math.round((scrollingY / topScroll)*100)
+  const px = (scrollingY / topScroll)*200
  
 
   
@@ -242,8 +242,7 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
       >
         <Image
           style={{
-          transform:`translate3d(0,${px}vh,0)`,
-          transition:'all ease 0.1s'
+          transform:`translate3d(0,${px}%,0)`,
           }}
           layout="responsive"
           width={500}
@@ -253,6 +252,9 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
         />
       </motion.div>
       <div
+        style={{
+          opacity:opacity
+        }}
         className=" 
         sticky bottom-0 
         overflow-hidden 
@@ -260,13 +262,21 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
         w-full lg:w-1/2
         flex items-center justify-center flex-col
      "
-      > 
+      >
+        <div
+
+          style={{
+          transform:`translate3d(0,${px*5}%,0)`,           
+          }}
+          className="
+          min-w-full
+          flex flex-col justify-center items-center overflow-hidden">
         <motion.p
           style={{
-          transform:`translate3d(0,-${px}%,0)`,
-          transition:'all ease 0.1s'
+          transform:`translate3d(0,-${px}%,0)`,           
           }}
           className="   
+          transition-all ease-in-Expo duration-[0s]
           text-justify
           leading-snug
           -tracking-wide
@@ -278,12 +288,13 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
           {quote}
         </motion.p>
         <h5
-
           style={{
           transform:`translate3d(0,-${px}%,0)`,
-          transition:'all ease 0.1s'
+         
           }}
           className="
+
+          transition-all ease-in-Expo duration-[0s]
           lg:px-32
           px-10 md:px-20
           self-end
@@ -294,6 +305,7 @@ const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperPro
         >
           - {author}
         </h5>
+        </div>
       </div>
     </div>
   );
