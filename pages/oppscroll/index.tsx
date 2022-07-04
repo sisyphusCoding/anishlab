@@ -15,6 +15,7 @@ import { useScroll } from "react-use";
 
 import { BsMouseFill } from "react-icons/bs";
 import { FiChevronDown } from "react-icons/fi";
+import { fail } from "assert";
 const OppScroll: NextPage = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { y } = useScroll(scrollRef);
@@ -23,11 +24,16 @@ const OppScroll: NextPage = () => {
   let progressW = 0;
 
   const { current: elContainer } = scrollRef;
-
+  let scrollH 
+  let numOfChild = 0
+  let thisScroll = 0
   if (elContainer) {
+     thisScroll = elContainer.scrollTop
+    scrollH = elContainer.scrollHeight
     parallax = y / elContainer?.clientHeight;
     progressW = elContainer.scrollTop / (elContainer.offsetHeight * 6);
-    console.log(progressW);
+    console.log('this is scrollHeight' ,scrollH);
+    console.log(thisScroll)
   }
 
   return (
@@ -49,7 +55,7 @@ const OppScroll: NextPage = () => {
         bg-white bg-opacity-50
         backdrop-blur-sm backdrop-filter
         h-2 w-full
-        absolute  left-0"
+        absolute top-0 "
       >
         <span
           style={{
@@ -57,7 +63,7 @@ const OppScroll: NextPage = () => {
             transformOrigin: "left",
           }}
           className="
-          w-full absolute
+          w-full absolute top-0 left-0
           h-full bg-zinc-900 bg-opacity-90 transition-all ease duration-[0s]"
         />
       </p>
@@ -121,6 +127,7 @@ const OppScroll: NextPage = () => {
       </div>
 
         <Wrapper
+          currentScroll={thisScroll}
           index={0}
           whichParent={scrollRef}
           quote="Do stuff. be clenched, curious. Not waiting for inspiration's shove or society's kiss on your forehead. Pay attention. It's all about paying attention. attention is vitality. It connects you with others. It makes you eager. stay eager."
@@ -128,6 +135,8 @@ const OppScroll: NextPage = () => {
         />
 
         <Wrapper
+
+          currentScroll={thisScroll}
           index={1}
           whichParent={scrollRef}
           quote="I am going to outlive myself. Eat, sleep, sleep, eat. Exist slowly, softly, like these trees, like a puddle of water, like the red bench in the streetcar"
@@ -135,6 +144,8 @@ const OppScroll: NextPage = () => {
         />
 
         <Wrapper
+
+          currentScroll={thisScroll}
           index={2}
           whichParent={scrollRef}
           quote="The world would be happier if men had the same capacity to be silent that they have to speak."
@@ -142,17 +153,24 @@ const OppScroll: NextPage = () => {
         />
 
         <Wrapper
+
+          currentScroll={thisScroll}
           whichParent={scrollRef}
-          index={4}
+          index={3}
           quote="Suppose we were able to share meanings freely without a compulsive urge to impose our view or conform to those of others and without distortion and self-deception. Would this not constitute a real revolution in culture?"
           author="david bohm"
         />
 
-        <Wrapper whichParent={scrollRef} index={3} quote="" author="Buddha" />
+        <Wrapper 
+
+          currentScroll={thisScroll}
+        whichParent={scrollRef} index={4} quote="" author="Buddha" />
 
         <Wrapper
+
+          currentScroll={thisScroll}
           whichParent={scrollRef}
-          index={99}
+          index={5}
           quote="Empty words and phrases , just MEOW."
           author="Feline"
         /> 
@@ -165,12 +183,36 @@ interface wrapperProps {
   quote: string;
   author: string;
   whichParent: RefObject<Element>;
+  currentScroll:number
 }
 
-const Wrapper = ({ index, quote, author, whichParent }: wrapperProps) => {
+const Wrapper = ({ index, quote, author, whichParent,currentScroll }: wrapperProps) => {
   const [enter, setEnter] = useState<boolean>(false);
+ 
+  const childRef = useRef<HTMLDivElement>(null)  
+
+  const {current: elChild} = childRef
+  
+  let topScroll = 0
+
+  if(elChild){
+    topScroll = elChild.clientHeight
+  }
+
+  const childScrollTop =  topScroll * (index+1)
+
+  const scrolling =  Math.abs(currentScroll - childScrollTop )
+
+
+  const checkCrossed = scrolling / topScroll
+
+
+  let opacity  = 1 - checkCrossed
+
   return (
     <motion.div
+      style={{opacity:opacity}}
+      ref={childRef}
       className={`
       sticky top-0
       z-30
@@ -182,8 +224,7 @@ const Wrapper = ({ index, quote, author, whichParent }: wrapperProps) => {
       h-screen min-w-full flex items-center justify-between`}
     >
       <motion.div
-        className={`
-        
+        className={`        
         transition-all ease-in-Expo duration-700
         z-50
         w-full h-[70vh]
