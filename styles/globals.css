@@ -54,6 +54,10 @@ a {
   box-sizing: border-box;
 }
 
+.snapWrap>*{
+  box-shadow: 0 -5px 30px  rgba(0,0,0,.7);
+}
+
 html.touch * { text-rendering: optimizeSpeed; }
 
 h1{
