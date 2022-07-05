@@ -3,7 +3,8 @@ import React, { useEffect, useRef } from "react";
 import { BsMouse } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
 import{useEffectOnce, useScroll} from 'react-use'
-import { openStdin } from "process";
+
+
 
 const InvertScroll: NextPage = () => {
 
@@ -17,7 +18,7 @@ const InvertScroll: NextPage = () => {
   let child:number
 
   let{y} = useScroll(snapRef)
-
+  
 
   if(elSnap){
     h= elSnap.clientHeight
@@ -36,6 +37,16 @@ const InvertScroll: NextPage = () => {
     }
   }
 
+  const handleScale = (i:number) => {
+    
+    
+
+
+   let zD = Math.max(0,2.5-Math.abs(((y- ((i+1)*h))/h)))
+
+    return zD
+  }
+
   return (
     
     <section
@@ -44,7 +55,7 @@ const InvertScroll: NextPage = () => {
       scroll-smooth
       text-zinc-900 
       snapWrap
-      font-accuratist
+      font-manrope
       flex-col
       snap-y snap-mandatory
       overflow-y-scroll
@@ -55,18 +66,22 @@ const InvertScroll: NextPage = () => {
       "
     >
     <div
+      style={{
+          transformStyle:'preserve-3d'
+        }}
     className="
         p-3
         rounded-xl
-        bg-opacity-10 bg-black
-        !shadow-none
+        !shadow-none 
         top-1/2
+        bg-black bg-opacity-20
+        backdrop-blur-2xl
         transform-cpu
         -translate-y-1/2
         left-2
         fixed
       z-50  
-        gap-1
+        gap-[.5vmin]
     flex flex-col justify-center items-center    
         "
       >
@@ -75,20 +90,22 @@ const InvertScroll: NextPage = () => {
         onClick={()=>handleScroll(index)}    
         key={index}
         style={{
-            opacity: Math.max(.2,1-Math.abs(((y-  ((index+1)*h))/h)))
+            opacity: Math.max(.2,1-Math.abs(((y-  ((index+1)*h))/h))),     
+            transform: `perspective(9vmin) translate3d(0,0,${handleScale(index)}vmin)`
           }}  
         className={`
           ${index===0? 'rounded-t-md':''} 
-          text-xs md:text-base
+          text-[clamp(.5rem,.4rem+.7vmin,.7rem)] md:text-base
+          font-bold
           cursor-pointer 
           hover:bg-black hover:text-white
           ${index===child-1? 'rounded-b-md':''} 
-          transition-all ease-in-Expo  
+          transition-all ease-in-Expo
           backdrop-blur-sm backdrop-filter
           bg-white 
           flex items-center justify-center
-          px-2 py-1
-          w-fit h-fit`}
+          md:w-[2.45vmin] md:h-[3vmin]
+          w-[4vmin] h-[4vmin]`}
           >
             <span
              >{
