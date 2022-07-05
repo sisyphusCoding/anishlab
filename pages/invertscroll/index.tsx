@@ -127,7 +127,7 @@ const InvertScroll: NextPage = () => {
       >
         <div
           className="
-          px-2
+          px-6
           overflow-hidden
           uppercase"
         >
