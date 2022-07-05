@@ -79,7 +79,7 @@ const InvertScroll: NextPage = () => {
         backdrop-blur-2xl
         transform-cpu
         -translate-y-1/2
-        left-2
+        left-0 md:left-2
         fixed
       z-50  
         gap-[.5vmin]
@@ -95,9 +95,9 @@ const InvertScroll: NextPage = () => {
             transform: `perspective(9vmin) translate3d(0,0,${handleScale(index)}vmin)`
           }}  
         className={`
-          ${index===0? 'md:rounded-t-md rounded-t-sm':''} 
-          ${index===child-1? 'md:rounded-b-md rounded-b-sm':''} 
-          text-[clamp(.5rem,.4rem+.7vmin,.7rem)] md:text-base
+          ${index===0? 'md:rounded-t-md rounded-t-[.3rem]':''} 
+          ${index===child-1? 'md:rounded-b-md rounded-b-[.3rem]':''} 
+          text-[clamp(.5rem,.5rem+.8vmin,1rem)] md:text-base
           font-bold
           cursor-pointer 
           hover:bg-black hover:text-white
@@ -106,7 +106,7 @@ const InvertScroll: NextPage = () => {
           bg-white 
           flex items-center justify-center
           md:w-[2.45vmin] md:h-[3vmin]
-          w-[4vmin] h-[4vmin]`}
+          w-[4vmin] h-[6vmin]`}
           >
             <span
              >{
@@ -128,6 +128,7 @@ const InvertScroll: NextPage = () => {
       >
         <div
           className="
+          px-2
           overflow-hidden
           uppercase"
         >
@@ -148,7 +149,7 @@ const InvertScroll: NextPage = () => {
         -bottom-7  absolute">
         <div
           style={{
-            transform:`translate3d(0,-${parallax/10}vh,0)`
+            transform:`translate3d(0,${parallax/10}vh,0)`
           }}
           className="
           transition-all ease-in-Expo
