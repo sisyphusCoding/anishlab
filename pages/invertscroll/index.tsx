@@ -94,12 +94,12 @@ const InvertScroll: NextPage = () => {
             transform: `perspective(9vmin) translate3d(0,0,${handleScale(index)}vmin)`
           }}  
         className={`
-          ${index===0? 'rounded-t-md':''} 
+          ${index===0? 'md:rounded-t-md rounded-t-sm':''} 
+          ${index===child-1? 'md:rounded-b-md rounded-b-sm':''} 
           text-[clamp(.5rem,.4rem+.7vmin,.7rem)] md:text-base
           font-bold
           cursor-pointer 
           hover:bg-black hover:text-white
-          ${index===child-1? 'rounded-b-md':''} 
           transition-all ease-in-Expo
           backdrop-blur-sm backdrop-filter
           bg-white 
