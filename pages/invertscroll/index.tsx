@@ -17,12 +17,15 @@ const InvertScroll: NextPage = () => {
 
   let child:number
 
+  let parallax = 0
+
   let{y} = useScroll(snapRef)
   
 
   if(elSnap){
     h= elSnap.clientHeight
     y+=h
+    parallax =  (y - h) 
     child = elSnap.childElementCount
     child --
   }
@@ -39,9 +42,7 @@ const InvertScroll: NextPage = () => {
 
   const handleScale = (i:number) => {
     
-    
-
-
+  
    let zD = Math.max(0,2.5-Math.abs(((y- ((i+1)*h))/h)))
 
     return zD
@@ -125,27 +126,45 @@ const InvertScroll: NextPage = () => {
         min-h-screen
         h-screen w-full"
       >
-        <h3
-          className="
-          uppercase"
-        >
-          scroll-snap
-        </h3>
         <div
           className="
+          overflow-hidden
+          uppercase"
+        >
+          <h3
+           style={{
+            transform:`translate3d(0,${parallax/10}vh,0)`
+          }} 
+           className='transition-all ease-in-Expo' 
+           >
+          scroll-snap
+          </h3>
+
+        </div>
+       <div 
+        className="
+          py-10
+          overflow-hidden
+        -bottom-7  absolute">
+        <div
+          style={{
+            transform:`translate3d(0,-${parallax/10}vh,0)`
+          }}
+          className="
+          transition-all ease-in-Expo
           text-5xl lg:text-6xl
         flex flex-col items-center justify-center  
-        -bottom-2  absolute
         "
         >
           <BsMouse />
           <span
             className="
             text-4xl lg:text-5xl
-            motion-safe:animate-bounce"
+           animate-bounce"
           >
             <BiChevronDown />
           </span>
+        </div>
         </div>
       </div>
       <div
