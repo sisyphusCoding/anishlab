@@ -41,7 +41,7 @@ const InvertScroll: NextPage = () => {
   }
 
   const handleScale = (i:number) => {
-    let zD = Math.max(0,2.5-Math.abs(((y- ((i+1)*h))/h)))
+    let zD = Math.max(1,2.5-Math.abs(((y- ((i+1)*h))/h)))
     return zD
   }
 
@@ -70,14 +70,15 @@ const InvertScroll: NextPage = () => {
         }}
     className="
         md:p-3 p-2
-        rounded-xl
+        md:rounded-xl
+        rounded-lg
         !shadow-none 
-        top-1/2
+        md:top-1/2 top-[70%]
         bg-black bg-opacity-20
         backdrop-blur-2xl
         transform-cpu
         -translate-y-1/2
-        right-1 md:right-2
+        right-2
         fixed
       z-50  
         gap-[.5vmin]
@@ -93,8 +94,8 @@ const InvertScroll: NextPage = () => {
             transform: `perspective(9vmin) translate3d(0,0,${handleScale(index)}vmin)`
           }}  
         className={`
-          ${index===0? 'md:rounded-t-md rounded-t-[.3rem]':''} 
-          ${index===5? 'md:rounded-b-md rounded-b-[.3rem]':''} 
+          ${index===0? 'md:rounded-t-md rounded-t-sm':''} 
+          ${index===5? 'md:rounded-b-md rounded-b-sm':''} 
           text-[clamp(.5rem,.5rem+.8vmin,1rem)] md:text-base
           font-bold
           cursor-pointer 
@@ -103,8 +104,8 @@ const InvertScroll: NextPage = () => {
           backdrop-blur-sm backdrop-filter
           bg-white 
           flex items-center justify-center
-          md:w-[4vmin] md:h-[3vmin]
-          w-[4vmin] h-[5vmin]`}
+          md:w-[3vmin] md:h-[3vmin]
+          w-[5vmin] h-[5vmin]`}
           >
             <span
              >{
