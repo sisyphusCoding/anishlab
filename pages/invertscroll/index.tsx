@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import React, { useEffect, useRef } from "react";
 import { BsMouse } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
-import{useScroll} from 'react-use'
+import{useEffectOnce, useScroll} from 'react-use'
 import { openStdin } from "process";
 
 const InvertScroll: NextPage = () => {
@@ -12,13 +12,11 @@ const InvertScroll: NextPage = () => {
 
   const{current:elSnap } = snapRef
 
-  let h = 0
-  let sH = 0
-  let child = 0
-  let sT = 0
+  let h:number
+
+  let child:number
 
   let{y} = useScroll(snapRef)
-
 
 
   if(elSnap){
@@ -26,15 +24,13 @@ const InvertScroll: NextPage = () => {
     y+=h
     child = elSnap.childElementCount
     child --
-    sH =elSnap.scrollHeight 
-    
-
   }
 
  
   const dummyArr = [0,1,2,3,4,5]
  
   const handleScroll = (i:number) => {
+    const{current:elSnap } = snapRef
     if(elSnap){
       elSnap.scrollTo(0,i*h)
     }
@@ -67,8 +63,8 @@ const InvertScroll: NextPage = () => {
         top-1/2
         transform-cpu
         -translate-y-1/2
+        left-2
         fixed
-        left-7
       z-50  
         gap-1
     flex flex-col justify-center items-center    
@@ -79,23 +75,25 @@ const InvertScroll: NextPage = () => {
         onClick={()=>handleScroll(index)}    
         key={index}
         style={{
-            aspectRatio:'.8',
-            opacity:(index+1)*h===y? 1 :0.3
+            opacity: Math.max(.2,1-Math.abs(((y-  ((index+1)*h))/h)))
           }}  
         className={`
           ${index===0? 'rounded-t-md':''} 
           text-xs md:text-base
           cursor-pointer 
-          hover:bg-opacity-40
+          hover:bg-black hover:text-white
           ${index===child-1? 'rounded-b-md':''} 
           transition-all ease-in-Expo  
           backdrop-blur-sm backdrop-filter
           bg-white 
           flex items-center justify-center
-          h-[4vmin] `}
+          px-2 py-1
+          w-fit h-fit`}
           >
             <span
-             >{index}</span>
+             >{
+            index
+            }</span>
           </p>
     ))}
       </div>  
