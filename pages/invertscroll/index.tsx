@@ -53,6 +53,7 @@ const InvertScroll: NextPage = () => {
 
   useEffectOnce(()=>{
     setLoaded(!loaded)
+    setLoaded(!loaded)
   })
 
 
@@ -150,7 +151,7 @@ const InvertScroll: NextPage = () => {
           }} 
            className='transition-all ease-in-Expo duration-75 min-w-full flex justify-center' 
            >
-          <span className="text-center">scroll-snap</span>
+          <span className="text-center min-w-full">scroll-snap</span>
           </h3>
 
         </div>
