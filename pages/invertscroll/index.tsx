@@ -1,8 +1,8 @@
 import { NextPage } from "next";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BsMouse } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
-import{useEffectOnce, useScroll} from 'react-use'
+import{useEffectOnce, useScroll,useMeasure} from 'react-use'
 
 
 
@@ -11,44 +11,54 @@ const InvertScroll: NextPage = () => {
 
   const snapRef = useRef<HTMLDivElement>(null)
 
-  const{current:elSnap } = snapRef
+  let[loaded,setLoaded] = useState(false)
 
-  let h:number
+  let h:number 
+
 
   let child:number
 
-  let parallax = 0
+  let parallax:number = 0
 
   let{y} = useScroll(snapRef)
-  
 
+ 
+
+
+  
+  const{current:elSnap } = snapRef
   if(elSnap){
-    h= elSnap.clientHeight
-    y+=h
+    h = elSnap.clientHeight
+    y+=h  
     parallax =  (y - h) 
     child = elSnap.childElementCount
     child --
   }
 
+
+
+
+
  
   const dummyArr = [0,1,2,3,4,5]
  
   const handleScroll = (i:number) => {
-    const{current:elSnap } = snapRef
-    if(elSnap){
-      elSnap.scrollTo(0,i*h)
-    }
+      elSnap?.scroll(0,i*h) 
   }
 
   const handleScale = (i:number) => {
-    let zD = Math.max(1,2.5-Math.abs(((y- ((i+1)*h))/h)))
+    let zD = Math.max(.8,2.5-Math.abs(((y- ((i+1)*h))/h)))
     return zD
   }
 
-  return (
-    
+  useEffectOnce(()=>{
+    setLoaded(!loaded)
+  })
+
+
+  return (    
     <section
-      ref={snapRef}
+      ref={snapRef} 
       className="
       scroll-smooth
       parallaxScroll
@@ -68,7 +78,9 @@ const InvertScroll: NextPage = () => {
       style={{
           transformStyle:'preserve-3d'
         }}
-    className="
+    className={`  
+       
+        transition-all ease-in-Expo duration-1000
         md:p-3 p-2
         md:rounded-xl
         rounded-lg
@@ -83,7 +95,7 @@ const InvertScroll: NextPage = () => {
       z-50  
         gap-[.5vmin]
     flex flex-col justify-center items-center    
-        "
+        `}
       >
     {dummyArr.map((item,index)=>(
       <p
@@ -91,7 +103,7 @@ const InvertScroll: NextPage = () => {
         key={index}
         style={{
             opacity: Math.max(.2,1-Math.abs(((y-  ((index+1)*h))/h))),     
-            transform: `perspective(9vmin) translate3d(0,0,${handleScale(index)}vmin)`
+            transform: `perspective(9vmin) translate3d(0,0,${handleScale(index)}vmin)`,
           }}  
         className={`
           ${index===0? 'md:rounded-t-md rounded-t-sm':''} 
@@ -128,6 +140,7 @@ const InvertScroll: NextPage = () => {
         <div
           className="
           px-6
+          min-w-full
           overflow-hidden
           uppercase"
         >
@@ -135,9 +148,9 @@ const InvertScroll: NextPage = () => {
            style={{
             transform:`translate3d(0,${parallax/10}vh,0)`
           }} 
-           className='transition-all ease-in-Expo' 
+           className='transition-all ease-in-Expo duration-75 min-w-full flex justify-center' 
            >
-          scroll-snap
+          <span className="text-center">scroll-snap</span>
           </h3>
 
         </div>
