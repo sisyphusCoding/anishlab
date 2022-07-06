@@ -54,6 +54,7 @@ const InvertScroll: NextPage = () => {
   useEffectOnce(()=>{
     setLoaded(!loaded)
     setLoaded(!loaded)
+    elSnap?.scroll(0,10)
   })
 
 
