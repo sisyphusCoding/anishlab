@@ -1,20 +1,17 @@
 import { NextPage } from "next";
 import React from "react";
 
-
 const ShowCase: NextPage = () => {
-
-  return(
+  return (
     <section
-     className="
+      className="
       flex items-center justify-center 
       dark:bg-black
       min-h-screen min-w-full"
-      >
+    >
+      SHOWCASE
     </section>
-  )
+  );
+};
 
-}
-
-
-export default ShowCase
+export default ShowCase;
