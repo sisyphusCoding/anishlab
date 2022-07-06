@@ -152,7 +152,10 @@ const InvertScroll: NextPage = () => {
           }} 
            className='transition-all ease-in-Expo duration-75 min-w-full flex justify-center' 
            >
-          <span className="text-center min-w-full">scroll-snap</span>
+          <span className="
+              px-10 text-zinc-700
+              drop-shadow-[2px_2px_3px_rgba(0,0,0,.7)]
+              text-center min-w-full">scroll-snap</span>
           </h3>
 
         </div>
