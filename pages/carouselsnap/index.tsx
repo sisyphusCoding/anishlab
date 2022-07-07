@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef } from "react";
-
+import dynamic from "next/dynamic";
 import Image from "next/image";
 
 import cat0 from "/cat/cat0.webp";
@@ -12,15 +12,18 @@ import cat6 from "/cat/cat6.webp";
 
 import { useIntersection } from "react-use";
 
-import ImageCard from "./components/ImageCard";
+
+
+const ImageCard = dynamic(()=>import("./components/ImageCard"),{
+  ssr:false
+})
 
 const Carouselsnap: FC = () => {
-
-  const listOfCat = [cat0,cat1,cat2,cat3,cat4,cat5,cat6]
-  const thisRef = useRef<HTMLDivElement>(null)
-  return(
+  const listOfCat = [cat0, cat1, cat2, cat3, cat4, cat5, cat6];
+  const thisRef = useRef<HTMLDivElement>(null);
+  return (
     <section
-     className="
+      className="
       px-10
       font-space
       flex
@@ -29,22 +32,20 @@ const Carouselsnap: FC = () => {
       gap-[10vmin] 
       flex-col items-center justify-center
       min-h-screen min-w-full"
-      >
- 
-      <h3 
-       className="        
+    >
+      <h3
+        className="        
         w-full
         px-1
         -tracking-widest
-        whitespace-pre-line" 
-       >
+        whitespace-pre-line"
+      >
         Intersection observer
       </h3>
-    
 
-     <div
-      ref={thisRef}
-       className=" 
+      <div
+        ref={thisRef}
+        className=" 
         p-5
         snap-x snap-mandatory
         drop-shadow-[0_15px_10px_rgba(0,0,0,.7)]   
@@ -56,20 +57,19 @@ const Carouselsnap: FC = () => {
         rounded-xl
         flex items-center justify-start
         "
-       >
-        {listOfCat.map((item,index)=>(
-          <ImageCard  
+      >
+        {listOfCat.map((item, index) => (
+          <ImageCard
             parentRef={thisRef}
             index={index}
             lastChild={listOfCat.length}
             key={index.toString()}
-            imageURL={listOfCat[index]}/>
+            imageURL={listOfCat[index]}
+          />
         ))}
-      </div>   
-
+      </div>
     </section>
-  )
-
-}
+  );
+};
 
 export default Carouselsnap;
