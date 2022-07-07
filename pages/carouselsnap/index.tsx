@@ -1,4 +1,4 @@
-import React, {useEffect, useRef } from "react";
+import React, {useEffect, useRef,FC } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
@@ -16,10 +16,10 @@ import { NextPage } from "next";
 
 
 const ImageCard = dynamic(()=>import("./components/ImageCard"),{
-  ssr:true
+  ssr:false
 })
 
-const Carouselsnap: NextPage = () => {
+const Carouselsnap: FC = () => {
   const listOfCat = [cat0, cat1, cat2, cat3, cat4, cat5, cat6];
   const thisRef = useRef<HTMLDivElement>(null);
   return (
