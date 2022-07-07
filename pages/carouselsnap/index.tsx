@@ -2,104 +2,74 @@ import React, { FC, useEffect, useRef } from "react";
 
 import Image from "next/image";
 
-import cat0 from "/cat/cat0.jpeg";
-import cat1 from "/cat/cat1.jpeg";
-import cat2 from "/cat/cat2.jpeg";
-import cat3 from "/cat/cat3.jpeg";
-import cat4 from "/cat/cat4.jpeg";
-import cat5 from "/cat/cat5.jpeg";
-import cat6 from "/cat/cat6.jpeg";
+import cat0 from "/cat/cat0.webp";
+import cat1 from "/cat/cat1.webp";
+import cat2 from "/cat/cat2.webp";
+import cat3 from "/cat/cat3.webp";
+import cat4 from "/cat/cat4.webp";
+import cat5 from "/cat/cat5.webp";
+import cat6 from "/cat/cat6.webp";
 
 import { useIntersection } from "react-use";
 
-import { animate, domMax, motion, Variants } from "framer-motion";
+import ImageCard from "./components/ImageCard";
 
 const Carouselsnap: FC = () => {
-  if (typeof window !== "undefined") {
-    const cards = document.querySelectorAll(".card");
-    const wrapper = document.querySelector(".carousel");
 
-    wrapper?.scrollIntoView({
-      behavior: "smooth",
-      inline: "nearest",
-      block: "end",
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle("show", entry.isIntersecting);
-        });
-      },
-      { threshold: 0.5, rootMargin: "-15%", root: wrapper }
-    );
-    cards.forEach((card) => {
-      observer.observe(card);
-    });
-  }
-
-  return (
-    <div
-      className="
-      flex flex-col items-center justify-center
-      "
-    >
-      <section
-        className="         
-      carousel  
-      px-10  
-      scroll-smooth    
-      drop-shadow-[0_3px_50px_rgba(0,0,0,.7)]     
-      dark:drop-shadow-[0_3px_10px_#171717]       
-      rounded-2xl
-      snap-mandatory snap-x 
-      overflow-y-hidden
-      overflow-x-auto  
-      gap-0 
-        border-2 border-black
-      flex items-center justify-start
-      max-w-[100vw]
-      h-[60vh] 
-         "
+  const listOfCat = [cat0,cat1,cat2,cat3,cat4,cat5,cat6]
+  const thisRef = useRef<HTMLDivElement>(null)
+  return(
+    <section
+     className="
+      px-10
+      font-space
+      flex
+      max-w-full
+      overflow-hidden
+      gap-[10vmin] 
+      flex-col items-center justify-center
+      min-h-screen min-w-full"
       >
-        {[cat0, cat1, cat2, cat3, cat4, cat5, cat6].map((pet, index) => (
-          <motion.div
-            style={{
-              transformStyle: "preserve-3d",
-            }}
-            key={index}
-            className={`
-  rounded-xl
-  overflow-hidden
-    will-change-transform
-    snap-center 
-    snap-always 
-     md:min-w-[70vmin]   
-     md:max-w-[70vmin]       
-     max-w-[90vmin]       
-     min-w-[90vmin] h-auto          
-  ${index === 0 ? "ml-[100%]" : ""}     
+ 
+      <h3 
+       className="        
+        w-full
+        px-1
+        -tracking-widest
+        whitespace-pre-line" 
+       >
+        Intersection observer
+      </h3>
+    
 
-  ${index === 6 ? "mr-[100%]" : ""}     
-      `}
-          >
-            <Image
-              className=" 
-    duration-700
-    transition-all ease-in-Expo
-      rounded-xl card"
-              src={pet}
-              layout="responsive"
-              height={70}
-              objectFit="cover"
-              width={100}
-              alt="cat"
-            />
-          </motion.div>
+     <div
+      ref={thisRef}
+       className=" 
+        p-5
+        snap-x snap-mandatory
+        drop-shadow-[0_15px_10px_rgba(0,0,0,.7)]   
+        max-w-[100vmin]
+        overflow-x-scroll overflow-y-hidden 
+        gap-10
+        scroll-px-32
+        min-w-[100vmin]
+        rounded-xl
+        flex items-center justify-start
+        "
+       >
+        {listOfCat.map((item,index)=>(
+          <ImageCard  
+            parentRef={thisRef}
+            index={index}
+            lastChild={listOfCat.length}
+            key={index.toString()}
+            imageURL={listOfCat[index]}/>
         ))}
-      </section>
-    </div>
-  );
-};
+      </div>   
+
+    </section>
+  )
+
+}
 
 export default Carouselsnap;

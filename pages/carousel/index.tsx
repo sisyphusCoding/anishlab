@@ -7,15 +7,16 @@ import Image from "next/image";
 
 import{usePrevious,useFirstMountState} from 'react-use'
 
-import cat0 from "/cat/cat0.jpeg";
-import cat1 from "/cat/cat1.jpeg";
-import cat2 from "/cat/cat2.jpeg";
-import cat3 from "/cat/cat3.jpeg";
-import cat4 from "/cat/cat4.jpeg";
-import cat5 from "/cat/cat5.jpeg";
-import cat6 from "/cat/cat6.jpeg";
-import { exit } from "process";
-import { setConfig } from "next/config";
+import cat0 from "/cat/cat0.webp";
+import cat1 from "/cat/cat1.webp";
+import cat2 from "/cat/cat2.webp";
+import cat3 from "/cat/cat3.webp";
+import cat4 from "/cat/cat4.webp";
+import cat5 from "/cat/cat5.webp";
+import cat6 from "/cat/cat6.webp";
+
+
+
 
 
 const Carousel : FC = () => {
