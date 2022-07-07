@@ -16,7 +16,7 @@ import { NextPage } from "next";
 
 
 const ImageCard = dynamic(()=>import("./components/ImageCard"),{
-  ssr:false
+  ssr:true
 })
 
 const Carouselsnap: NextPage = () => {
@@ -50,11 +50,11 @@ const Carouselsnap: NextPage = () => {
         p-5
         snap-x snap-mandatory
         drop-shadow-[0_15px_10px_rgba(0,0,0,.7)]   
-        max-w-[100vmin]
+        max-w-full
         overflow-x-scroll overflow-y-hidden 
         gap-10
         scroll-px-32
-        min-w-[100vmin]
+        min-w-full
         rounded-xl
         flex items-center justify-start
         "
