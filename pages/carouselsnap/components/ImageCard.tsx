@@ -1,9 +1,9 @@
 import React, { FC, RefObject, useRef } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useIntersection } from "react-use";
 
 interface imageCardProps {
-  imageURL: string | any;
+  imageURL: StaticImageData
   index: number;
   lastChild: number;
   parentRef: RefObject<Element>;
@@ -56,7 +56,7 @@ const ImageCard: FC<imageCardProps> = ({
         height={500}
         width={800}
         src={imageURL}
-        alt={imageURL}
+        alt={index.toString()}
       />
     </div>
   );
