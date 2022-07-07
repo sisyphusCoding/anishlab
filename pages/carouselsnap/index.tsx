@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, {useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
@@ -11,6 +11,7 @@ import cat5 from "/cat/cat5.webp";
 import cat6 from "/cat/cat6.webp";
 
 import { useIntersection } from "react-use";
+import { NextPage } from "next";
 
 
 
@@ -18,7 +19,7 @@ const ImageCard = dynamic(()=>import("./components/ImageCard"),{
   ssr:false
 })
 
-const Carouselsnap: FC = () => {
+const Carouselsnap: NextPage = () => {
   const listOfCat = [cat0, cat1, cat2, cat3, cat4, cat5, cat6];
   const thisRef = useRef<HTMLDivElement>(null);
   return (
