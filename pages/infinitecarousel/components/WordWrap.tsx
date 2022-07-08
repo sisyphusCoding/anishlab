@@ -2,12 +2,14 @@ import React,{FC, useRef} from "react";
 import{useIntersection} from 'react-use'
 
 interface wordwrapProps{
+  len:number
+  handleInfinite:any
   word:string
   index:number
 }
 
 
-const WordWrap: FC<wordwrapProps> = ({word,index}) => {
+const WordWrap: FC<wordwrapProps> = ({word,index,handleInfinite,len}) => {
   
   const intRef = useRef<HTMLHeadingElement>(null)
 
@@ -25,6 +27,10 @@ const WordWrap: FC<wordwrapProps> = ({word,index}) => {
     console.log(index,'is wating')
   }
 
+  if(index === len-1 && intersection&&intersection.intersectionRatio<0.5){
+    handleInfinite()
+    console.log('last second done')
+  }  
 
 
   return(
@@ -44,7 +50,7 @@ const WordWrap: FC<wordwrapProps> = ({word,index}) => {
         <span
           className="text-xs"
           > 
-        {intersection&& intersection.intersectionRatio<0.5?'Yes':'No'} 
+          {intersection&& intersection.intersectionRatio<0.5?'Yes':'No'} 
         </span>
     </h3>
   )

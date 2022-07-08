@@ -1,12 +1,12 @@
 import { NextPage } from "next";
-import React from "react";
+import React,{useEffect} from "react";
 import WordWrap from "./components/WordWrap";
 
 
 const InfiniteCarousel: NextPage = () =>{
 
 
-  const wordBank:string[] = ['Infinite Carousel' , 'without framework']
+  const wordBank:string[] = ['Infinite Carousel' , 'made using','Intersection observer']
 
   const currentWord:string[] = []
 
@@ -15,9 +15,14 @@ const InfiniteCarousel: NextPage = () =>{
       console.log( 'this' , currentWord)
   }
 
+ 
+  useEffect(()=>{
+    console.log('this')
+  },[currentWord.length])
 
   const handleInfinite = () => {
-    console.log('this')
+      currentWord.push(...wordBank)
+      console.log('GOT THIS ' , currentWord)
   }
 
   return(
@@ -41,6 +46,8 @@ const InfiniteCarousel: NextPage = () =>{
 
         {currentWord.map((item,index)=>(
           <WordWrap   
+            len={wordBank.length}
+            handleInfinite={handleInfinite}
             key={index.toString()}
             index={index}
             word={currentWord[index]}/>  
