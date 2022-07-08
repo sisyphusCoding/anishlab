@@ -16,6 +16,7 @@ const Home: NextPage = () => {
     >
       <h1
         className="
+        myName
         tracking-tighter
         lowercase
         font-accuratist "

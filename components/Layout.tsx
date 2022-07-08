@@ -7,9 +7,13 @@ interface Props {
 }
 
 const Layout: FC<Props> = ({ children }) => {
+
+   
+
   return (
-    <main
+  <main
       className="
+      overflow-hidden
       relative
       flex flex-col items-center justify-center
       bg-zinc-200 text-zinc-700
@@ -23,7 +27,6 @@ const Layout: FC<Props> = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ThemeButton />
-
       {children}
     </main>
   );
