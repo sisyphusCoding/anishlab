@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import React from "react";
+import HeaderA from "./components/HeaderA";
 
 
 
@@ -11,7 +12,7 @@ const AirPodsMax:NextPage = () => {
       dark:bg-black
       min-h-screen min-w-full"
       >
-      AirPodsMax
+      <HeaderA/>
     </main>
   )
 }
