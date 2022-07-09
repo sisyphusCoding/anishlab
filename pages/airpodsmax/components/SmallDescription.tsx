@@ -4,7 +4,7 @@ const SmallDescription: FC = () => {
   return (
     <section
       className="
-      shadow-[0_20px_30px_-5px_rgba(0,0,0,.7)]
+      shadow-[0_25px_30px_-5px_rgba(0,0,0,.7)]
       z-50
       font-extrabold
       py-20
@@ -15,7 +15,7 @@ const SmallDescription: FC = () => {
         className="
       md:text-xl lg:text-2xl
       -tracking-wide
-      max-w-[80vmin] px-20 text-center"
+      max-w-[80vmin]  text-center"
       >
         Introducing AirPods Max — a perfect balance of exhilarating
         high-fidelity audio and the effortless magic of AirPods. The ultimate
