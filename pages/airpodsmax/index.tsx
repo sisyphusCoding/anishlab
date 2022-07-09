@@ -5,26 +5,26 @@ import VideoII from "./components/VideoII";
 
 import { useMeasure, useScroll, useWindowScroll } from "react-use";
 import SmallDescription from "./components/SmallDescription";
+import Design from "./components/Design";
+
 
 const AirPodsMax: FC = () => {
   const mainRef = useRef<HTMLDivElement>(null);
   const{current:elMain} = mainRef
   let { y } = useScroll(mainRef)
   
-  let sH  , h
+  let sH:number = 0
+  let h:number = 0
 
   if(elMain){
     h = elMain.clientHeight 
     sH = elMain.scrollHeight
-    console.log(sH,y)
-    y+=h
   }
 
 
   return (
     <div
       ref={mainRef}
-      onScroll={() => console.log("not scrolling")}
       className=" 
       relative
       scroll-smooth
@@ -36,9 +36,12 @@ const AirPodsMax: FC = () => {
       max-h-screen
       min-w-full"
     >
+
       <HeaderA currScroll={y} />
-      <SmallDescription />
-      <VideoII />
+
+      <SmallDescription/>
+      <VideoII currentY = {y} />
+      <Design/>
     </div>
   );
 };

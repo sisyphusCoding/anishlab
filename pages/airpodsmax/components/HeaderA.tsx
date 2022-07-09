@@ -1,5 +1,6 @@
 import React,{FC, useRef, useState} from "react";
 import Image from "next/image";
+import SmallDescription from "./SmallDescription";
 
 interface headerProps{
     currScroll:number
@@ -24,7 +25,8 @@ const HeaderA : FC<headerProps> = ({currScroll}) =>{
   
   if(elHeader){
     h = elHeader.clientHeight
-    scaleFactor = currScroll /h
+    currScroll+=h
+    scaleFactor = (currScroll /h) 
 
     if(scaleFactor>1.4){
         scaleFactor = 1.4
@@ -42,7 +44,10 @@ const HeaderA : FC<headerProps> = ({currScroll}) =>{
     ref={headRef}
     onLoad={()=>setHeaderLoaded(true)}  
      className="
-      min-h-screen max-h-screen
+      dark:text-zinc-300
+      bg-zinc-300 dark:bg-black
+      z-10
+      min-h-screen 
       min-w-full
       max-w-full
       flex flex-col items-center justify-center"
@@ -67,7 +72,6 @@ const HeaderA : FC<headerProps> = ({currScroll}) =>{
        ${headerLoaded? 'blur-0 opacity-100 scale-100':'blur-sm opacity-0 scale-[3]'} 
        ${toggleTrans?'transition-none':'transition-all ease-in-Expo duration-1000'}
         z-[2]
-        drop-shadow-[0_5px_10px_rgba(0,0,0,.2)]
         dark:brightness-75
         absolute 
         min-w-[70vmin] h-auto`}>
