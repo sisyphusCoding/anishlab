@@ -1,27 +1,38 @@
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 
 
 const VideoII : FC = () => {
-
   
+
+ const vidRef = useRef<HTMLElement>(null) 
+
+ const{current:elVid} = vidRef 
+ 
+ let sT
+
+  if(elVid){
+    sT = elVid.offsetTop 
+  }
+
+
 
   return(
     <section
+      ref={vidRef}
       className="
       sticky top-0
-      h-screen min-w-full"
+      min-h-screen w-screen"
       >
-      <div
-        >
       <video 
         className="
-        min-h-screen w-screen
+         min-h-screen min-w-full
+          max-h-screen max-w-full
         object-cover"
         autoPlay loop
         playsInline muted>
         <source src={videoURL}/>
         </video>
-      </div>
+   
     </section>
   )
 }

@@ -24,8 +24,6 @@ const HeaderA : FC<headerProps> = ({currScroll}) =>{
   
   if(elHeader){
     h = elHeader.clientHeight
-    currScroll += h
-    
     scaleFactor = currScroll /h
 
     if(scaleFactor>1.4){
@@ -44,9 +42,8 @@ const HeaderA : FC<headerProps> = ({currScroll}) =>{
     ref={headRef}
     onLoad={()=>setHeaderLoaded(true)}  
      className="
-      relative 
-      h-screen max-h-screen
-      min-w-full
+      min-h-screen max-h-screen
+      w-screen
       flex flex-col items-center justify-center"
      >
 
@@ -56,7 +53,9 @@ const HeaderA : FC<headerProps> = ({currScroll}) =>{
         ${headerLoaded? 'opacity-100 blur-0':'opacity-0'}
         transition-opacity ease-in-Expo duration-1000 delay-700
         px-10
-        text-[clamp(1rem,.833rem+14vmin,15rem)]
+        
+        -tracking-wider
+        text-[16vw]
         font-semibold whitespace-nowrap`} >AirPods Max</h1>
 
      <div 

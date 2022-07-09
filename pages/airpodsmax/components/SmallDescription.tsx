@@ -8,7 +8,7 @@ const SmallDescription: FC = () => {
       z-50
       font-extrabold
       py-20
-      min-w-full
+      w-screen
       flex flex-col items-center justify-center"
     >
       <p

@@ -100,6 +100,7 @@ const OppScroll: NextPage = () => {
             opacity: `${parallax < 0.8 ? 1 : 0}`,
           }}
           className=" 
+          text-[22vmin]
           mix-blend-color-dodge
           transition-all ease-in-Expo duration-[0s]
           w-full 
