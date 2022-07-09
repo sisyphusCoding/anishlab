@@ -16,8 +16,11 @@ const VidList:FC<vidListProps> = ({content,id,currentY,parentH}) => {
   const{current:elList} = listRef
 
   let sT:number = 0
+  let h:number = 0
   if(elList){
      sT = elList.offsetTop
+      h=elList.clientHeight
+
   }
 
  console.log(parentH)
@@ -29,13 +32,12 @@ const VidList:FC<vidListProps> = ({content,id,currentY,parentH}) => {
         <li 
           ref={listRef}
          className="        
-          sticky top-0
+          sticky top-10
          max-w-[80vmin] 
         text-zinc-50
         px-6 py-2
         rounded-3xl
-        bg-black bg-opacity-20
-        backdrop-blur-sm"
+        backdrop-blur-xl"
          >
           <p
             className="
