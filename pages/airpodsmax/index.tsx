@@ -31,6 +31,7 @@ const AirPodsMax: FC = () => {
       font-space
       flex flex-col items-center justify-start
       dark:bg-black
+      overflow-x-hidden
       overflow-y-scroll
       max-h-screen
       min-w-full"
