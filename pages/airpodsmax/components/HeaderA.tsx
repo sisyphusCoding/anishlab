@@ -43,7 +43,8 @@ const HeaderA : FC<headerProps> = ({currScroll}) =>{
     onLoad={()=>setHeaderLoaded(true)}  
      className="
       min-h-screen max-h-screen
-      w-screen
+      min-w-full
+      max-w-full
       flex flex-col items-center justify-center"
      >
 
