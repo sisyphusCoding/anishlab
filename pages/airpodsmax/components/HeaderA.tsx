@@ -1,49 +1,41 @@
-import React,{FC, useRef, useState} from "react";
+import React, { FC, useRef, useState } from "react";
 import Image from "next/image";
 import SmallDescription from "./SmallDescription";
 
-interface headerProps{
-    currScroll:number
-  }
+interface headerProps {
+  currScroll: number;
+}
 
-const HeaderA : FC<headerProps> = ({currScroll}) =>{
+const HeaderA: FC<headerProps> = ({ currScroll }) => {
+  const [headerLoaded, setHeaderLoaded] = useState<boolean>(false);
 
+  const headRef = useRef<HTMLElement>(null);
 
+  const { current: elHeader } = headRef;
 
-  
-  const[headerLoaded,setHeaderLoaded] = useState<boolean>(false)
+  let h = 0;
 
-  const headRef = useRef<HTMLElement>(null) 
+  let scaleFactor = 0;
 
-  const{current:elHeader} = headRef
+  let toggleTrans: boolean = false;
 
-  let h = 0
+  if (elHeader) {
+    h = elHeader.clientHeight;
+    currScroll += h;
+    scaleFactor = currScroll / h;
 
-  let scaleFactor = 0
-
-  let toggleTrans:boolean = false
-  
-  if(elHeader){
-    h = elHeader.clientHeight
-    currScroll+=h
-    scaleFactor = (currScroll /h) 
-
-    if(scaleFactor>1.4){
-        scaleFactor = 1.4
-      }
-
-    toggleTrans = scaleFactor>1
-
+    if (scaleFactor > 1.4) {
+      scaleFactor = 1.4;
     }
 
-  
+    toggleTrans = scaleFactor > 1;
+  }
 
-  return(
-    
+  return (
     <section
-    ref={headRef}
-    onLoad={()=>setHeaderLoaded(true)}  
-     className="
+      ref={headRef}
+      onLoad={() => setHeaderLoaded(true)}
+      className="
       dark:text-zinc-300
       bg-zinc-300 dark:bg-black
       z-10
@@ -51,40 +43,53 @@ const HeaderA : FC<headerProps> = ({currScroll}) =>{
       min-w-full
       max-w-full
       flex flex-col items-center justify-center"
-     >
-
-      <h1 
-        style={{transform:`scale(${h/currScroll})`}}
+    >
+      <h1
+        style={{ transform: `scale(${h / currScroll})` }}
         className={`
-        ${headerLoaded? 'opacity-100 blur-0':'opacity-0'}
+        ${headerLoaded ? "opacity-100 blur-0" : "opacity-0"}
         transition-opacity ease-in-Expo duration-1000 delay-700
         px-10
         
         -tracking-wider
         text-[16vw]
-        font-semibold whitespace-nowrap`} >AirPods Max</h1>
+        font-semibold whitespace-nowrap`}
+      >
+        AirPods Max
+      </h1>
 
-     <div 
-      style={{
-        transform:`scale(${toggleTrans? scaleFactor:''})`, 
+      <div
+        style={{
+          transform: `scale(${toggleTrans ? scaleFactor : ""})`,
         }}
-       className={`
-       ${headerLoaded? 'blur-0 opacity-100 scale-100':'blur-sm opacity-0 scale-[3]'} 
-       ${toggleTrans?'transition-none':'transition-all ease-in-Expo duration-1000'}
+        className={`
+       ${
+         headerLoaded
+           ? "blur-0 opacity-100 scale-100"
+           : "blur-sm opacity-0 scale-[3]"
+       } 
+       ${
+         toggleTrans
+           ? "transition-none"
+           : "transition-all ease-in-Expo duration-1000"
+       }
         z-[2]
         dark:brightness-75
         absolute 
-        min-w-[70vmin] h-auto`}>
-     <Image    
-        src={airpodsURL}
-        layout="responsive"
-        height={100} width={100}
-        alt='airpods-max'
-          />   
-      </div> 
+        min-w-[70vmin] h-auto`}
+      >
+        <Image
+          src={airpodsURL}
+          layout="responsive"
+          height={100}
+          width={100}
+          alt="airpods-max"
+        />
+      </div>
     </section>
-  )
-}
-  const airpodsURL :string = 'https://www.apple.com/v/airpods-max/e/images/overview/hero__gnfk5g59t0qe_large_2x.png'
+  );
+};
+const airpodsURL: string =
+  "https://www.apple.com/v/airpods-max/e/images/overview/hero__gnfk5g59t0qe_large_2x.png";
 
-export default HeaderA
+export default HeaderA;

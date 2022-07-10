@@ -44,7 +44,7 @@ if(elVid){
         min-w-full max-w-full
         gap-10
         flex flex-col items-center justify-end
-        z-[90] min-h-screen"
+        z-[90] h-fit"
         > 
         {listContent.map((item,index)=>(
             <VidList 

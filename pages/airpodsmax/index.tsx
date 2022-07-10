@@ -38,7 +38,6 @@ const AirPodsMax: FC = () => {
     >
 
       <HeaderA currScroll={y} />
-
       <SmallDescription/>
       <VideoII currentY = {y} />
       <Design/>
