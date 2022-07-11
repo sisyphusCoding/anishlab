@@ -8,10 +8,9 @@ interface vidListProps {
   id: number;
   currentY: number;
   parentH: number;
-  thisRef:RefObject<Element>
 }
 
-const VidList: FC<vidListProps> = ({ content, id, currentY, parentH,thisRef }) => {
+const VidList: FC<vidListProps> = ({ content, id, currentY, parentH}) => {
   const listRef = useRef<HTMLLIElement>(null);
 
   const { current: elList } = listRef;
@@ -45,8 +44,8 @@ const VidList: FC<vidListProps> = ({ content, id, currentY, parentH,thisRef }) =
 
 
   const intersection = useIntersection(listRef,{
-    root:thisRef.current,
-    rootMargin:'-20%',
+    root:null,
+    rootMargin:`${parentH/2}px`,
     threshold:1
   })
   
@@ -80,8 +79,7 @@ const VidList: FC<vidListProps> = ({ content, id, currentY, parentH,thisRef }) =
         style={{
         }}
         className={`
-            ${checkOpac? 'opacity-0 ease ':'opacity-100 ease-out'}
-            
+            ${checkOpac? 'opacity-0 ease-out ':'opacity-100 ease-in'} 
                transition-opacity duration-500
                 -tracking-wider
               text-[6vmin] 

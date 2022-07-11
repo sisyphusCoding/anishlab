@@ -47,7 +47,6 @@ const VideoII : FC<videoProps> = ({currentY}) => {
         > 
         {listContent.map((item,index)=>(
             <VidList 
-              thisRef={listParenRef}
               parentH={h}
               currentY={currentY}
               key={index}
