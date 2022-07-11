@@ -23,10 +23,7 @@ const VideoII : FC<videoProps> = ({currentY}) => {
     opac = ((sT/2)*1.2)/h 
   }
 
-
-if(elVid){
-
-  }  
+  const listParenRef = useRef<HTMLUListElement>(null)
 
 
 
@@ -34,20 +31,23 @@ if(elVid){
     <section
       ref={vidRef}
       className="
-      flex flex-col items-center justify-center
+      flex flex-col items-center justify-end
       bg-black
       sticky bottom-0
       min-h-screen w-screen"
       >
       <ul
+        ref={listParenRef}
         className="
-        min-w-full max-w-full
-        gap-10
-        flex flex-col items-center justify-end
-        z-[90] h-fit"
+        min-h-screen
+        max-h-screen
+        min-w-full max-w-full 
+        flex flex-col items-center justify-center
+        z-[3] h-fit"
         > 
         {listContent.map((item,index)=>(
             <VidList 
+              thisRef={listParenRef}
               parentH={h}
               currentY={currentY}
               key={index}

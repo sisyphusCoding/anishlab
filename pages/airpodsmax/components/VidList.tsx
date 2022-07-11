@@ -1,17 +1,21 @@
 import { parse } from "path";
-import React, { FC, ReactNode, useRef } from "react";
+import React, { FC, ReactNode, RefObject, useRef } from "react";
+
+import {useIntersection} from 'react-use'
 
 interface vidListProps {
   content: string;
   id: number;
   currentY: number;
   parentH: number;
+  thisRef:RefObject<Element>
 }
 
-const VidList: FC<vidListProps> = ({ content, id, currentY, parentH }) => {
+const VidList: FC<vidListProps> = ({ content, id, currentY, parentH,thisRef }) => {
   const listRef = useRef<HTMLLIElement>(null);
 
   const { current: elList } = listRef;
+
 
   let sT: number = 0;
   let h: number = 0;
@@ -20,26 +24,52 @@ const VidList: FC<vidListProps> = ({ content, id, currentY, parentH }) => {
     h = elList.clientHeight;
   }
 
-  let scrollByPasser = (parentH+sT);
+  let approx = parentH / 3.33
 
-  let opac = (currentY-scrollByPasser)/(scrollByPasser) *(25/(id+1))
+  let halfH = parentH * 0.5
 
-  if(opac>1){opac=0}
+  let thisScroll = currentY-approx
+
+  let transY = (currentY) - (parentH + sT)
+  transY*=-1
+  transY /=2
 
 
-  console.log(scrollByPasser,currentY,id)
+ let scrollByPasser = (parentH+sT);
 
-  let thisY = opac * -150
+  let opac = 1
+
+
+  console.log(id,opac)
+
+
+
+  const intersection = useIntersection(listRef,{
+    root:thisRef.current,
+    rootMargin:'-20%',
+    threshold:1
+  })
+  
+  let checkOpac 
+
+  if(intersection){ 
+    checkOpac = intersection.intersectionRatio<1
+    console.log(id,checkOpac)
+  }
+
+
+
 
   return (
     <li
+      
       style={{
-      transform: `translate3d(0,${thisY}px,0)`,
+        transform:`translate3d(0,${transY}rem,0)`
       }}
       ref={listRef}
-      className="           
+      className="            
+        py-40
         overflow-hidden
-        overflow-y-scroll
         sticky top-0
         max-w-[80vmin] 
         text-zinc-50
@@ -48,13 +78,15 @@ const VidList: FC<vidListProps> = ({ content, id, currentY, parentH }) => {
     >
       <p
         style={{
-          opacity: opac,
         }}
-        className=" 
+        className={`
+            ${checkOpac? 'opacity-0 ease ':'opacity-100 ease-out'}
+            
+               transition-opacity duration-500
                 -tracking-wider
               text-[6vmin] 
               font-extrabold 
-              text-center"
+              text-center `}
       >
         {content}
       </p>
