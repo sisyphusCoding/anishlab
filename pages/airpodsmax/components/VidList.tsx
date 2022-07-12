@@ -1,7 +1,7 @@
 import { parse } from "path";
 import React, { FC, ReactNode, RefObject, useRef } from "react";
 
-import {useIntersection} from 'react-use'
+import { useIntersection } from "react-use";
 
 interface vidListProps {
   content: string;
@@ -10,11 +10,10 @@ interface vidListProps {
   parentH: number;
 }
 
-const VidList: FC<vidListProps> = ({ content, id, currentY, parentH}) => {
+const VidList: FC<vidListProps> = ({ content, id, currentY, parentH }) => {
   const listRef = useRef<HTMLLIElement>(null);
 
   const { current: elList } = listRef;
-
 
   let sT: number = 0;
   let h: number = 0;
@@ -23,51 +22,43 @@ const VidList: FC<vidListProps> = ({ content, id, currentY, parentH}) => {
     h = elList.clientHeight;
   }
 
-  let approx = parentH / 3.33
+  let approx = parentH / 3.33;
 
-  let halfH = parentH * 0.5
+  let halfH = parentH * 0.5;
 
-  let thisScroll = currentY-approx
+  let thisScroll = currentY - approx;
 
-  let transY = (currentY) - (parentH + sT)
-  transY*=-1
-  transY /=2
+  let transY = currentY - (parentH + sT);
+  transY *= -1;
+  transY /= 2;
 
+  let scrollByPasser = parentH + sT;
 
- let scrollByPasser = (parentH+sT);
+  let opac = 1;
 
-  let opac = 1
+  console.log(id, opac);
 
+  const intersection = useIntersection(listRef, {
+    root: null,
+    rootMargin: "-10%",
+    threshold: 1,
+  });
 
-  console.log(id,opac)
+  let checkOpac;
 
-
-
-  const intersection = useIntersection(listRef,{
-    root:null,
-    rootMargin:`${parentH/2}px`,
-    threshold:1
-  })
-  
-  let checkOpac 
-
-  if(intersection){ 
-    checkOpac = intersection.intersectionRatio<1
-    console.log(id,checkOpac)
+  if (intersection) {
+    checkOpac = intersection.intersectionRatio < 1;
+    console.log(id, checkOpac);
   }
-
-
-
 
   return (
     <li
-      
       style={{
-        transform:`translate3d(0,${transY}rem,0)`
+        transform: `translate3d(0,${transY*.65}vmin,0)`,
       }}
       ref={listRef}
       className="            
-        py-40
+        py-[5vmin]
         overflow-hidden
         sticky top-0
         max-w-[80vmin] 
@@ -76,11 +67,10 @@ const VidList: FC<vidListProps> = ({ content, id, currentY, parentH}) => {
        "
     >
       <p
-        style={{
-        }}
+        style={{}}
         className={`
-            ${checkOpac? 'opacity-0 ease-out ':'opacity-100 ease-in'} 
-               transition-opacity duration-500
+        ${checkOpac?'opacity-0 duration-500 ':'opacity-100 duration-1000'}
+               transition-opacity  ease-out
                 -tracking-wider
               text-[6vmin] 
               font-extrabold 

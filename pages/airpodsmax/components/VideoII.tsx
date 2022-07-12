@@ -34,11 +34,13 @@ const VideoII : FC<videoProps> = ({currentY}) => {
       flex flex-col items-center justify-end
       bg-black
       sticky bottom-0
+      max-h-screen 
       min-h-screen w-screen"
       >
       <ul
         ref={listParenRef}
         className="
+        sticky bottom-0
         min-h-screen
         max-h-screen
         min-w-full max-w-full 
