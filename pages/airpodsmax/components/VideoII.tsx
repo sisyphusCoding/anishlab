@@ -40,9 +40,10 @@ const VideoII : FC<videoProps> = ({currentY}) => {
       <ul
         ref={listParenRef}
         className="
-        sticky bottom-0
-        min-h-screen
-        max-h-screen
+        sticky top-0
+        min-h-[50vh]
+        max-h-[50vh]
+        backdrop-blur-sm 
         min-w-full max-w-full 
         flex flex-col items-center justify-center
         z-[3] h-fit"

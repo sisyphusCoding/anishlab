@@ -22,14 +22,15 @@ const HeaderA: FC<headerProps> = ({ currScroll }) => {
   if (elHeader) {
     h = elHeader.clientHeight;
     currScroll += h;
-    scaleFactor = currScroll / h;
-
-    if (scaleFactor > 1.4) {
-      scaleFactor = 1.4;
+    scaleFactor = currScroll / 1.5 / (h / 1.5);
+    if (scaleFactor > 1.2) {
+      scaleFactor = 1.2;
     }
 
     toggleTrans = scaleFactor > 1;
   }
+
+  let textScale = h / currScroll;
 
   return (
     <section
@@ -45,7 +46,7 @@ const HeaderA: FC<headerProps> = ({ currScroll }) => {
       flex flex-col items-center justify-center"
     >
       <h1
-        style={{ transform: `scale(${h / currScroll})` }}
+        style={{ transform: `scale(${textScale})` }}
         className={`
         ${headerLoaded ? "opacity-100 blur-0" : "opacity-0"}
         transition-opacity ease-in-Expo duration-1000 delay-700

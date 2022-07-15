@@ -30,7 +30,6 @@ const VidList: FC<vidListProps> = ({ content, id, currentY, parentH }) => {
 
   let transY = currentY - (parentH + sT);
   transY *= -1;
-  transY /= 2;
 
   let scrollByPasser = parentH + sT;
 
@@ -54,11 +53,12 @@ const VidList: FC<vidListProps> = ({ content, id, currentY, parentH }) => {
   return (
     <li
       style={{
-        transform: `translate3d(0,${transY*.65}vmin,0)`,
+        transform: `translate3d(0,${transY/2}vmin,0)`,
       }}
       ref={listRef}
       className="            
-        py-[5vmin]
+        min-h-[25vh]
+        py-5
         overflow-hidden
         sticky top-0
         max-w-[80vmin] 

@@ -7,20 +7,18 @@ import { useMeasure, useScroll, useWindowScroll } from "react-use";
 import SmallDescription from "./components/SmallDescription";
 import Design from "./components/Design";
 
-
 const AirPodsMax: FC = () => {
   const mainRef = useRef<HTMLDivElement>(null);
-  const{current:elMain} = mainRef
-  let { y } = useScroll(mainRef)
-  
-  let sH:number = 0
-  let h:number = 0
+  const { current: elMain } = mainRef;
+  let { y } = useScroll(mainRef);
 
-  if(elMain){
-    h = elMain.clientHeight 
-    sH = elMain.scrollHeight
+  let sH: number = 0;
+  let h: number = 0;
+
+  if (elMain) {
+    h = elMain.clientHeight;
+    sH = elMain.scrollHeight;
   }
-
 
   return (
     <div
@@ -36,11 +34,10 @@ const AirPodsMax: FC = () => {
       max-h-screen
       min-w-full"
     >
-
       <HeaderA currScroll={y} />
-      <SmallDescription/>
-      <VideoII currentY = {y} />
-      <Design/>
+      <SmallDescription />
+      <VideoII currentY={y} />
+      <Design />
     </div>
   );
 };
