@@ -1,7 +1,7 @@
-import { parse } from "path";
+import { openStdin } from "process";
 import React, { FC, ReactNode, RefObject, useRef } from "react";
+import { cursorTo } from "readline";
 
-import { useIntersection } from "react-use";
 
 interface vidListProps {
   content: string;
@@ -11,66 +11,56 @@ interface vidListProps {
 }
 
 const VidList: FC<vidListProps> = ({ content, id, currentY, parentH }) => {
-  const listRef = useRef<HTMLLIElement>(null);
+  
+  const listRef = useRef<HTMLLIElement>(null)
+
+  currentY -= (parentH*0.256)
 
   const { current: elList } = listRef;
 
-  let sT: number = 0;
-  let h: number = 0;
-  if (elList) {
-    sT = elList.offsetTop;
-    h = elList.clientHeight;
+    let sT = 0
+
+    if(elList){
+    const{clientHeight:thisH}=elList
+    sT = elList.offsetTop
   }
 
-  let approx = parentH / 3.33;
+  let test = currentY-sT
 
-  let halfH = parentH * 0.5;
-
-  let thisScroll = currentY - approx;
-
-  let transY = currentY - (parentH + sT);
-  transY *= -1;
-
-  let scrollByPasser = parentH + sT;
-
-  let opac = 1;
-
-  console.log(id, opac);
-
-  const intersection = useIntersection(listRef, {
-    root: null,
-    rootMargin: "-10%",
-    threshold: 1,
-  });
-
-  let checkOpac;
-
-  if (intersection) {
-    checkOpac = intersection.intersectionRatio < 1;
-    console.log(id, checkOpac);
+  let opac = test / sT
+  
+  console.log(opac,id)
+  if(opac>0.5){
+  opac += .4
+  }else if(opac<0.5) {
+    opac -= .5
   }
 
+  
+  console.log(opac,id)
+
+  test*=-1
+
+
+ 
   return (
     <li
       style={{
-        transform: `translate3d(0,${transY/2}vmin,0)`,
+        transform:`translate3d(0,${test}px,0)`
       }}
       ref={listRef}
-      className="            
-        min-h-[25vh]
-        py-5
-        overflow-hidden
-        sticky top-0
+      className="              
+        flex flex-col items-center justify-center
+        transition-all ease-in-Expo duration-[0s]
+        border-white border-2
         max-w-[80vmin] 
         text-zinc-50
-        rounded-3xl
        "
     >
       <p
-        style={{}}
+        style={{opacity:opac}}
         className={`
-        ${checkOpac?'opacity-0 duration-500 ':'opacity-100 duration-1000'}
-               transition-opacity  ease-out
+               transition-opacity  ease-in-Expo duration-1000
                 -tracking-wider
               text-[6vmin] 
               font-extrabold 

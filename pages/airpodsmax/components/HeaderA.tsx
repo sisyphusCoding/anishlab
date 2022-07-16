@@ -23,8 +23,9 @@ const HeaderA: FC<headerProps> = ({ currScroll }) => {
     h = elHeader.clientHeight;
     currScroll += h;
     scaleFactor = currScroll / 1.5 / (h / 1.5);
-    if (scaleFactor > 1.2) {
-      scaleFactor = 1.2;
+    console.log("scaleFactor", scaleFactor);
+    if (scaleFactor > 1.3) {
+      scaleFactor = 1.3;
     }
 
     toggleTrans = scaleFactor > 1;
@@ -46,10 +47,16 @@ const HeaderA: FC<headerProps> = ({ currScroll }) => {
       flex flex-col items-center justify-center"
     >
       <h1
-        style={{ transform: `scale(${textScale})` }}
+        style={{ transform: `scale(${toggleTrans ? textScale : ""})` }}
         className={`
-        ${headerLoaded ? "opacity-100 blur-0" : "opacity-0"}
-        transition-opacity ease-in-Expo duration-1000 delay-700
+        ${headerLoaded ? "opacity-100 blur-0" : "opacity-0 blur-xl"} 
+
+       ${
+         toggleTrans
+           ? "transition-none delay-[0s]"
+           : "transition-all ease-in-Expo duration-[2s] delay-700"
+       }
+       
         px-10
         
         -tracking-wider
@@ -72,7 +79,7 @@ const HeaderA: FC<headerProps> = ({ currScroll }) => {
        ${
          toggleTrans
            ? "transition-none"
-           : "transition-all ease-in-Expo duration-1000"
+           : "transition-all ease-in-Expo duration-[2s]"
        }
         z-[2]
         dark:brightness-75
