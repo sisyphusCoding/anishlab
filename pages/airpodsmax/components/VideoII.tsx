@@ -1,11 +1,11 @@
-import React, { FC, useRef } from 'react'
+import React, { FC, useContext, useRef } from 'react'
+import { ScrollY } from '..'
 
-interface videoProps {
-  currentY: number
-}
 
-const VideoII: FC<videoProps> = ({ currentY }) => {
+const VideoII: FC = () => {
   const vidRef = useRef<HTMLElement>(null)
+
+  let currentY = useContext(ScrollY)
 
   const { current: elVid } = vidRef
 

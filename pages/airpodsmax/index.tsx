@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import React, { useRef, FC } from "react";
 import HeaderA from "./components/HeaderA";
 import VideoII from "./components/VideoII";
@@ -8,7 +7,13 @@ import SmallDescription from "./components/SmallDescription";
 import Design from "./components/Design";
 import ParallaxList from "./components/ParallaxList";
 
+interface ScrollValue{
+  scrollY:number
+}
+export const ScrollY= React.createContext<number>(0)
+
 const AirPodsMax: FC = () => {
+
   const mainRef = useRef<HTMLDivElement>(null);
   const { current: elMain } = mainRef;
   let { y } = useScroll(mainRef);
@@ -22,6 +27,7 @@ const AirPodsMax: FC = () => {
   }
 
   return (
+    <ScrollY.Provider value={y}>
     <div
       ref={mainRef}
       className=" 
@@ -35,12 +41,13 @@ const AirPodsMax: FC = () => {
       max-h-screen
       min-w-full"
     >
-      <HeaderA currScroll={y} />
+      <HeaderA/>
       <SmallDescription />
-      <VideoII currentY={y} />
-      <ParallaxList currentY={y}/>
+      <VideoII  />
+      <ParallaxList/>
       <Design />
     </div>
+    </ScrollY.Provider>
   );
 };
 

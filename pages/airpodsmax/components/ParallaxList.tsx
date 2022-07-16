@@ -1,12 +1,10 @@
-import React, { FC, useRef } from 'react'
+import React, { FC, useContext, useRef } from 'react'
+import { ScrollY } from '..'
 import ParallaxChild from './ParallaxChild'
 
-interface parallaxListProps{
-  currentY:number
-}
+const ParallaxList: FC = () => {
 
-const ParallaxList: FC<parallaxListProps> = ({currentY}) => {
-
+  let currentY:number = useContext(ScrollY)
 
   const parallaxRef = useRef<HTMLElement>(null)
 
@@ -24,8 +22,8 @@ return (
     className="
       min-h-[150vh]  min-w-full
       z-10
-      py-[10vmin] 
-      gap-[10vmin]
+      pt-[25vh]
+      pb-[25vh]
       flex flex-col justify-between items-center
       "
         >

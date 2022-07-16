@@ -1,13 +1,18 @@
-import React, { FC, useRef, useState } from 'react'
+import React, {
+    FC,
+    useContext,
+    useRef,
+    useState,
+    useSyncExternalStore
+} from 'react'
 import Image from 'next/image'
-import SmallDescription from './SmallDescription'
+import { ScrollY } from '..'
 
-interface headerProps {
-    currScroll: number
-}
-
-const HeaderA: FC<headerProps> = ({ currScroll }) => {
+const HeaderA: FC = () => {
     const [headerLoaded, setHeaderLoaded] = useState<boolean>(false)
+
+    let currentY = useContext(ScrollY)
+
 
     const headRef = useRef<HTMLElement>(null)
 
@@ -21,8 +26,8 @@ const HeaderA: FC<headerProps> = ({ currScroll }) => {
 
     if (elHeader) {
         h = elHeader.clientHeight
-        currScroll += h
-        scaleFactor = currScroll / 1.5 / (h / 1.5)
+        currentY += h
+        scaleFactor = currentY / 1.5 / (h / 1.5)
 
         if (scaleFactor > 1.3) {
             scaleFactor = 1.3
@@ -31,7 +36,7 @@ const HeaderA: FC<headerProps> = ({ currScroll }) => {
         toggleTrans = scaleFactor > 1
     }
 
-    let textScale = h / currScroll
+    let textScale = h / currentY
 
     return (
         <section
