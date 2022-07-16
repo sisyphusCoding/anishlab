@@ -6,6 +6,7 @@ import VideoII from "./components/VideoII";
 import { useMeasure, useScroll, useWindowScroll } from "react-use";
 import SmallDescription from "./components/SmallDescription";
 import Design from "./components/Design";
+import ParallaxList from "./components/ParallaxList";
 
 const AirPodsMax: FC = () => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -37,6 +38,7 @@ const AirPodsMax: FC = () => {
       <HeaderA currScroll={y} />
       <SmallDescription />
       <VideoII currentY={y} />
+      <ParallaxList currentY={y}/>
       <Design />
     </div>
   );

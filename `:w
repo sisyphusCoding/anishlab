@@ -1,27 +1,28 @@
-import React, { FC, useRef } from 'react'
+import React, { FC, useRef } from "react";
+
 
 interface videoProps {
-  currentY: number
+  currentY: number;
 }
 
 const VideoII: FC<videoProps> = ({ currentY }) => {
-  const vidRef = useRef<HTMLElement>(null)
 
-  const { current: elVid } = vidRef
+  const vidRef = useRef<HTMLElement>(null);
 
-  let sT: number = 0
-  let h: number = 0
-  let opac = 0 // for video
+  const { current: elVid } = vidRef;
+
+  let sT: number = 0;
+  let h: number = 0;
+  let opac = 0; // for video
 
   if (elVid) {
-    h = elVid.clientHeight
-    h
-    sT = elVid.offsetTop
-    opac = currentY/ h
-    opac/=2
+    h = elVid.clientHeight;
+    h;
+    sT = elVid.offsetTop;
+    opac = ((sT / 2) * 1.2) / h;
   }
 
-  const listParenRef = useRef<HTMLUListElement>(null)
+  const listParenRef = useRef<HTMLUListElement>(null);
 
   return (
     <section
@@ -29,8 +30,7 @@ const VideoII: FC<videoProps> = ({ currentY }) => {
       className="
       flex flex-col items-center justify-end
       bg-black
-      -mt-[100vh]
-      sticky top-0
+      sticky bottom-0
       overflow-y-scroll
       max-h-screen 
       min-h-screen w-screen"
@@ -51,10 +51,12 @@ const VideoII: FC<videoProps> = ({ currentY }) => {
         <source src={videoURL} />
       </video>
     </section>
-  )
-}
+  );
+};
+
 
 const videoURL: string =
-  'https://www.apple.com/105/media/us/airpods-max/2020/996b980b-3131-44f1-af6c-fe72f9b3bfb5/anim/supercut/large_2x.mp4'
+  "https://www.apple.com/105/media/us/airpods-max/2020/996b980b-3131-44f1-af6c-fe72f9b3bfb5/anim/supercut/large_2x.mp4";
 
-export default VideoII
+
+export default VideoII;
