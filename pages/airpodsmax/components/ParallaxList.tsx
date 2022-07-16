@@ -20,10 +20,10 @@ return (
   <section
   ref={parallaxRef}
     className="
-      min-h-[150vh]  min-w-full
+       min-w-full
+      max-h-fit
       z-10
-      pt-[25vh]
-      pb-[25vh]
+      gap-[15vmin]
       flex flex-col justify-between items-center
       "
         >

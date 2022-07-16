@@ -113,9 +113,7 @@ const InvertScroll: NextPage = () => {
         ))}
       </div>
       <div
-        className="
-        
-        sticky top-0
+        className="        
         snap-start snap-always
         bg-amber-500
          flex-col
@@ -132,9 +130,9 @@ const InvertScroll: NextPage = () => {
         >
           <h3
             style={{
-              transform: `translate3d(0,${parallax / 10}vh,0)`,
+              transform: `translate3d(0,${parallax / 4}vh,0)`,
             }}
-            className="transition-all ease-in-Expo duration-75 min-w-full flex justify-center"
+            className=" min-w-full flex justify-center"
           >
             <span
               className="
@@ -154,11 +152,10 @@ const InvertScroll: NextPage = () => {
         >
           <div
             style={{
-              transform: `translate3d(0,${parallax / 10}vh,0)`,
+              transform: `translate3d(0,${parallax/4}vh,0)`,
             }}
             className="
-          transition-all ease-in-Expo
-          text-5xl lg:text-6xl
+        text-5xl lg:text-6xl
         flex flex-col items-center justify-center  
         "
           >
@@ -176,8 +173,7 @@ const InvertScroll: NextPage = () => {
       <div
         className="
         flex-col flex items-center justify-center
-        sticky top-0
-        
+        z-10   
         bg-zinc-300
         snap-start snap-always
         min-h-screen w-full"
@@ -189,7 +185,6 @@ const InvertScroll: NextPage = () => {
         className="
 
         flex-col flex items-center justify-center
-        sticky top-0
        
         bg-red-700
         snap-start snap-always
@@ -201,7 +196,6 @@ const InvertScroll: NextPage = () => {
       <div
         className="
         flex-col flex items-center justify-center
-        sticky top-0 
         bg-green-500
         snap-start snap-always
         min-h-screen w-full"
@@ -213,7 +207,6 @@ const InvertScroll: NextPage = () => {
         className="
         bg-indigo-800
         flex-col flex items-center justify-center
-        sticky top-0
         snap-start snap-always
         min-h-screen w-full"
       >
@@ -223,7 +216,6 @@ const InvertScroll: NextPage = () => {
       <div
         className="
         flex-col flex items-center justify-center
-        sticky top-0 
         bg-sky-600
         snap-start snap-always
         min-h-screen w-full"

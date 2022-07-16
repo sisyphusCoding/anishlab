@@ -34,18 +34,15 @@ id
     offTop = elPara.offsetTop}
 
   
-  let trialOpac =  customY-offTop
+  let trialOpac =  customY/offTop
+  
+  
 
-  let thisY = 100
 
-  if(trialOpac>h){
-    thisY*=-1
-    trialOpac=0}else if(trialOpac<h){
-  }
+  let thisY = 200
 
-  console.log(trialOpac,id)
+  console.log(thisY,id)
    
-
   return(  
           <p         
             style={{opacity:trialOpac}}
@@ -61,7 +58,6 @@ id
               '
             >
           <span
-            style={{transform:`translate3d(0,${thisY/2}px,0)`}}
             className={`
             transition-all ease duration-1000
             `}
