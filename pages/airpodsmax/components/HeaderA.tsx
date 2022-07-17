@@ -13,7 +13,6 @@ const HeaderA: FC = () => {
 
     let currentY = useContext(ScrollY)
 
-
     const headRef = useRef<HTMLElement>(null)
 
     const { current: elHeader } = headRef
@@ -58,7 +57,7 @@ const HeaderA: FC = () => {
 
        ${
            toggleTrans
-               ? 'transition-none delay-[0s]'
+               ? 'transition-none delay-[0s] duration-[0s]'
                : 'transition-[filter,opacity]  ease-in-Expo duration-[2s] delay-700'
        }
        

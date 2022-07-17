@@ -31,7 +31,7 @@ const ParallaxChild: FC<parallaxChildProps> = ({
         let windowH = window.innerHeight
     }
 
-    let customY = currentY * 1.45
+    let customY = currentY * 1.5
 
     let startTrigger = customY > offTop
 
@@ -59,9 +59,8 @@ const ParallaxChild: FC<parallaxChildProps> = ({
             style={{ opacity: trialOpac }}
             ref={paraRef}
             className=" 
-            drop-shadow-[0_5px_3px_rgba(0,0,0,.7)]
             py-[8vh]
-            transition-opacity ease-in-Expo duration-700
+            transition-opacity ease-in-Expo duration-1000
             text-center
             max-w-[80vmin]
             text-white
@@ -75,6 +74,7 @@ const ParallaxChild: FC<parallaxChildProps> = ({
                     transform: `translate3d(0,${transY}%,0)`
                 }}
                 className={`
+            -tracking-wide
             transition-all ease-in-Expo duration-1000
             `}
             >
