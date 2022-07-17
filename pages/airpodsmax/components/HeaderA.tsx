@@ -59,7 +59,7 @@ const HeaderA: FC = () => {
        ${
            toggleTrans
                ? 'transition-none delay-[0s]'
-               : 'transition-all ease-in-Expo duration-[2s] delay-700'
+               : 'transition-[filter,opacity]  ease-in-Expo duration-[2s] delay-700'
        }
        
         px-10

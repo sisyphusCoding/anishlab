@@ -43,17 +43,20 @@ id
   let endTrigger =  customY>offTop+h
 
 
-  let start = customY-offTop
-  let end = customY - (offTop+h)
+  let start = (offTop-customY ) / customY
+  let end =   ((offTop+h) - customY ) / customY
 
 
   let trialOpac = 0
 
+  let transY = 200
   
     if(startTrigger){
-      trialOpac = 1
+      trialOpac = 1 
+      transY = 0
       if(endTrigger){
       trialOpac= 0
+      transY = -200
     }
     }
 
@@ -67,7 +70,6 @@ id
             ref={paraRef}
             className=' 
             py-[8vh]
-            outline outline-2 outline-black
             transition-opacity ease-in-Expo duration-700
             text-center
             max-w-[80vmin]
@@ -78,8 +80,11 @@ id
               '
             >
           <span
+            style={{
+            transform:`translateY(${transY}px)`
+        }}
             className={`
-            transition-all ease duration-1000
+            transition-all ease-in-Expo duration-1000
             `}
             >
           {content}
