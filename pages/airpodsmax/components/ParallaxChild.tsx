@@ -1,3 +1,4 @@
+import { elementDragControls } from "framer-motion/types/gestures/drag/VisualElementDragControls";
 import { off } from "process";
 import React,{FC, useRef} from "react";
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
@@ -37,35 +38,37 @@ id
 
   let customY =  (currentY*1.28)
 
-  let hasEntered = customY >parentTop
-  
+  let startTrigger = customY>offTop 
+ 
+  let endTrigger =  customY>offTop+h
+
+
+  let start = customY-offTop
+  let end = customY - (offTop+h)
+
+
   let trialOpac = 0
 
-    
-
-    if(offTop<customY){
+  
+    if(startTrigger){
       trialOpac = 1
+      if(endTrigger){
+      trialOpac= 0
     }
- 
-
-  let opac  =  Math.abs((( (currentY+h) - (offTop) ) / (h) )) / 10
-
-  opac +=.3
-
-  
+    }
 
 
-  
+    console.log(id,start,end)
 
-  console.log(id,customY,offTop,opac)
 
   return(  
           <p         
-            style={{opacity:opac}}
+            style={{opacity:trialOpac}}
             ref={paraRef}
             className=' 
+            py-[8vh]
             outline outline-2 outline-black
-            transition-opacity ease duration-700
+            transition-opacity ease-in-Expo duration-700
             text-center
             max-w-[80vmin]
             text-white

@@ -24,9 +24,8 @@ return (
     className="
        min-w-full
       min-h-[150vh]
-      py-14
+      py-[2vh]
       z-10
-      gap-[15vmin]
       flex flex-col items-center justify-evenly
       "
         >
