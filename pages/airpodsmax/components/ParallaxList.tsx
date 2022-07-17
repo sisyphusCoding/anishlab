@@ -13,6 +13,7 @@ const ParallaxList: FC = () => {
     let parentTop: number = 0
     if (elParallax) {
         parentTop = elParallax.offsetTop
+
         thisParentH = elParallax.clientHeight
     }
 
@@ -22,9 +23,9 @@ const ParallaxList: FC = () => {
             className="
        min-w-full
       min-h-[150vh]
-      py-[2vh]
+      py-[20vmin]
       z-10
-      flex flex-col items-center justify-evenly
+      flex flex-col items-center justify-between
       "
         >
             {listContent.map((item, index) => (

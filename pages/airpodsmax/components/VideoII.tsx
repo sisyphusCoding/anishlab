@@ -37,6 +37,8 @@ const VideoII: FC = () => {
     >
       <video
         style={{ opacity: opac }}
+        preload='none'
+        
         className="
         z-0
         absolute top-0 left-0
@@ -44,6 +46,7 @@ const VideoII: FC = () => {
           max-h-screen max-w-full
         object-cover"
         autoPlay
+
         loop
         playsInline
         muted

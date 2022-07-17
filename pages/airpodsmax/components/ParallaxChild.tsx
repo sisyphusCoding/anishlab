@@ -24,11 +24,11 @@ const ParallaxChild: FC<parallaxChildProps> = ({
 
     let offTop = 0
     let h = 0
-
+    let top:number = 0
     if (elPara) {
         h = elPara.clientHeight
         offTop = elPara.offsetTop
-        let windowH = window.innerHeight
+        top = elPara.getBoundingClientRect().top
     }
 
     let customY = currentY * 1.5
@@ -37,21 +37,21 @@ const ParallaxChild: FC<parallaxChildProps> = ({
 
     let endTrigger = customY > offTop + h
 
-    let start = (offTop - customY) / customY
-    let end = (offTop + h - customY) / customY
-
     let trialOpac = 0
+
+    let centerY =  50
 
     let transY = 200
 
     if (startTrigger) {
         trialOpac = 1
-        transY = 0
+        transY = -top/(3)
         if (endTrigger) {
             trialOpac = 0
-            transY = -200
+            transY = -400
         }
     }
+
 
 
     return (
@@ -59,7 +59,7 @@ const ParallaxChild: FC<parallaxChildProps> = ({
             style={{ opacity: trialOpac }}
             ref={paraRef}
             className=" 
-            py-[8vh]
+            py-[10vh]
             transition-opacity ease-in-Expo duration-1000
             text-center
             max-w-[80vmin]
