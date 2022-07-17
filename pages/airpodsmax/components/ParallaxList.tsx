@@ -16,15 +16,18 @@ const ParallaxList: FC = () => {
     parentTop = elParallax.offsetTop
     thisParentH = elParallax.clientHeight}
 
+
+
 return (
   <section
   ref={parallaxRef}
     className="
        min-w-full
-      max-h-fit
+      min-h-[150vh]
+      py-14
       z-10
       gap-[15vmin]
-      flex flex-col justify-between items-center
+      flex flex-col items-center justify-evenly
       "
         >
         {listContent.map((item,index)=>(

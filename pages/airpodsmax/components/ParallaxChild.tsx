@@ -1,3 +1,4 @@
+import { off } from "process";
 import React,{FC, useRef} from "react";
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
@@ -23,7 +24,6 @@ id
 
   const {current:elPara} = paraRef
 
-  let customY = currentY * 1.5
 
 
   let offTop = 0
@@ -31,30 +31,47 @@ id
 
   if(elPara){
     h=elPara.clientHeight
-    offTop = elPara.offsetTop}
+    offTop = elPara.offsetTop
+    let windowH = window.innerHeight
+  }
+
+  let customY =  (currentY*1.28)
+
+  let hasEntered = customY >parentTop
+  
+  let trialOpac = 0
+
+    
+
+    if(offTop<customY){
+      trialOpac = 1
+    }
+ 
+
+  let opac  =  Math.abs((( (currentY+h) - (offTop) ) / (h) )) / 10
+
+  opac +=.3
 
   
-  let trialOpac =  customY/offTop
+
+
   
-  
 
+  console.log(id,customY,offTop,opac)
 
-  let thisY = 200
-
-  console.log(thisY,id)
-   
   return(  
           <p         
-            style={{opacity:trialOpac}}
+            style={{opacity:opac}}
             ref={paraRef}
             className=' 
+            outline outline-2 outline-black
             transition-opacity ease duration-700
             text-center
             max-w-[80vmin]
             text-white
             font-semibold
             inline-flex 
-            text-[clamp(1rem,1rem+5vmin,5rem)] 
+            text-[6vmin]
               '
             >
           <span
