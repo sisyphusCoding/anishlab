@@ -33,7 +33,7 @@ const AirPodsMax: FC = () => {
       className=" 
       relative
       scroll-smooth
-      font-space
+      font-manrope
       flex flex-col items-center justify-start
       dark:bg-black
       overflow-x-hidden
